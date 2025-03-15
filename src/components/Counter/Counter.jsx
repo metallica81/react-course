@@ -1,24 +1,10 @@
-import { useState } from "react"
-
-export function Counter() {
-    const [count, setCount] = useState(0);
-
-    const increment = () => {
-        if (count < 5) {
-            setCount(count + 1);
-        }
-    }
-    const decrement = () => {
-        if (count > 0) {
-            setCount(count - 1);
-        }
-    }
+export function Counter({ onIncrement, count, onDecrement }) {
 
     return (
         <div style={{"display": "flex", "gap": "10px", "alignItems": "center"}}>
-            <button onClick={decrement}>-</button>
+            <button onClick={onDecrement}>-</button>
             {count}
-            <button onClick={increment}>+</button>
+            <button onClick={onIncrement}>+</button>
         </div>
     )
     

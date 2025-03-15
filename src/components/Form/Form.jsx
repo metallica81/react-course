@@ -1,6 +1,7 @@
 import { Clear } from "../Clear/Clear";
 import { useReducer } from "react";
 import { handleSubmit } from "./handleSubmit";
+import { FormCouter } from "./FormCounter/FormCounter";
 
 const DEFAULT_FORM = {
     name: "",
@@ -69,6 +70,7 @@ export function Form() {
                 ))}
                 <br />
             </div>
+            <FormCouter />
             <Clear handlers={{ setName, setText, setRating }} />
         </form>
     );
