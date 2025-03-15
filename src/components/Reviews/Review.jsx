@@ -1,3 +1,5 @@
+import { Form } from "../Form/Form";
+
 export function Review({ reviews }) {
     return (
         <>
@@ -11,6 +13,8 @@ export function Review({ reviews }) {
                     );
                 })}
             </ul>
+            
+            <Form />
         </>
     );
 }
