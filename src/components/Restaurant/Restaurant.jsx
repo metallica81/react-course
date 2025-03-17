@@ -1,5 +1,5 @@
 import { Menu } from "../Menu/Menu";
-import { Review } from "../Reviews/Review";
+import { Reviews } from "../Reviews/Review";
 
 export const Restaurant = ({ restaurant }) => {
     const { name, menu, reviews } = restaurant;
@@ -10,7 +10,7 @@ export const Restaurant = ({ restaurant }) => {
         >
             <h2>{name}</h2>
             {!!menu.length && <Menu menu={menu} />}
-            {!!reviews.length && <Review reviews={reviews} />}
+            {!!reviews.length && <Reviews reviews={reviews} />}
         </section>
     );
 };

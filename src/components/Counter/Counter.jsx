@@ -7,5 +7,4 @@ export function Counter({ onIncrement, count, onDecrement }) {
             <button onClick={onIncrement}>+</button>
         </div>
     )
-    
 }

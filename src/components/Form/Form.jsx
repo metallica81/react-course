@@ -1,38 +1,13 @@
-import { Clear } from "../Clear/Clear";
-import { useReducer } from "react";
+//import { Clear } from "../Clear/Clear";
 import { handleSubmit } from "./handleSubmit";
 import { FormCouter } from "./FormCounter/FormCounter";
-
-const DEFAULT_FORM = {
-    name: "",
-    text: "",
-    rating: null
-};
-const SET_NAME = 'SET_NAME';
-const SET_TEXT = 'SET_TEXT';
-const SET_RATING = 'SET_RATING';
-
-function reducer(state, { type, payload }) {
-    switch (type) {
-        case SET_NAME:
-            return { ...state, name: payload };
-        case SET_TEXT:
-            return { ...state, text: payload };
-        case SET_RATING:
-            return { ...state, rating: payload };
-        default:
-            return state;
-    }
-}
+import { useFormReducer } from "./useReducer";
+import { CommonButton } from "../CommonButton/CommonButton";
 
 export function Form() {
-    const [form, dispatch] = useReducer(reducer, DEFAULT_FORM);
 
+    const { setName, setText, setRating, setClear, form } = useFormReducer();
     const {name, text, rating} = form;
-
-    const setName = (name) => dispatch({type: SET_NAME, payload: name})
-    const setText = (text) => dispatch({type: SET_TEXT, payload: text})
-    const setRating = (rating) => dispatch({type: SET_RATING, payload: rating})
 
     return (
         <form
@@ -71,7 +46,10 @@ export function Form() {
                 <br />
             </div>
             <FormCouter />
-            <Clear handlers={{ setName, setText, setRating }} />
+            <CommonButton 
+                onClick={() => setClear()} 
+                text={ 'Clear' } 
+            />
         </form>
     );
 }

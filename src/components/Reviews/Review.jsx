@@ -1,6 +1,6 @@
 import { Form } from "../Form/Form";
 
-export function Review({ reviews }) {
+export function Reviews({ reviews }) {
     return (
         <>
             <h3>Отзывы</h3>
