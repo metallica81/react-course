@@ -3,11 +3,12 @@ import { handleSubmit } from "./handleSubmit";
 import { FormCouter } from "./FormCounter/FormCounter";
 import { useFormReducer } from "./useReducer";
 import { CommonButton } from "../CommonButton/CommonButton";
+import { Counter } from "../Counter/Counter";
 
 export function Form() {
 
-    const { setName, setText, setRating, setClear, form } = useFormReducer();
-    const {name, text, rating} = form;
+    const { setName, setText, setRating, increment, decrement, setClear, form } = useFormReducer();
+    const {name, text, rating, count } = form;
 
     return (
         <form
@@ -45,7 +46,7 @@ export function Form() {
                 ))}
                 <br />
             </div>
-            <FormCouter />
+            <Counter onDecrement={() => decrement()} count={count} onIncrement={() => increment()} />
             <CommonButton 
                 onClick={() => setClear()} 
                 text={ 'Clear' } 
