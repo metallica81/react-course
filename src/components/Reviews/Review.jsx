@@ -1,4 +1,6 @@
-export function Review({ reviews }) {
+import { Form } from "../Form/Form";
+
+export function Reviews({ reviews }) {
     return (
         <>
             <h3>Отзывы</h3>
@@ -11,6 +13,8 @@ export function Review({ reviews }) {
                     );
                 })}
             </ul>
+            
+            <Form />
         </>
     );
 }

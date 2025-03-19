@@ -1,4 +1,4 @@
-import { Counter } from "../Counter/Counter"
+import { DishCounter } from "./DishCounter/DishCounter"
 
 export function Menu({menu}) {
     return(
@@ -10,7 +10,7 @@ export function Menu({menu}) {
                         return (
                                 Boolean(menu.name) && <li key={menu.id}  style={{display: "flex", gap: "10px", alignItems: "center" }}>
                                     {menu.name}
-                                    <Counter id={menu.id}/>
+                                    <DishCounter id={menu.id}/>
                                 </li>
                         )
                     })
