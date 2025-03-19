@@ -1,4 +1,4 @@
-import { useReducer } from "react";
+import { useCallback, useReducer } from "react";
 
 const DEFAULT_FORM = {
     name: "",
@@ -40,8 +40,8 @@ export function useFormReducer() {
     const setName = (name) => dispatch({type: SET_NAME, payload: name})
     const setText = (text) => dispatch({type: SET_TEXT, payload: text})
     const setRating = (rating) => dispatch({type: SET_RATING, payload: rating})
-    const increment = () => dispatch({type: INCREMENT})
-    const decrement = () => dispatch({type: DECREMENT})
+    const increment = useCallback(() => dispatch({type: INCREMENT}), [])
+    const decrement = useCallback(() => dispatch({type: DECREMENT}), [])
     const setClear = () => dispatch({ type: SET_CLEAR })
 
     return {

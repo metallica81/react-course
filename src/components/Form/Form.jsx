@@ -1,6 +1,4 @@
-//import { Clear } from "../Clear/Clear";
 import { handleSubmit } from "./handleSubmit";
-import { FormCouter } from "./FormCounter/FormCounter";
 import { useFormReducer } from "./useReducer";
 import { CommonButton } from "../CommonButton/CommonButton";
 import { Counter } from "../Counter/Counter";
@@ -46,9 +44,10 @@ export function Form() {
                 ))}
                 <br />
             </div>
-            <Counter onDecrement={() => decrement()} count={count} onIncrement={() => increment()} />
+            <Counter onDecrement={decrement} count={count} onIncrement={increment} />
+            
             <CommonButton 
-                onClick={() => setClear()} 
+                onClick={setClear} 
                 text={ 'Clear' } 
             />
         </form>
