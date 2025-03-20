@@ -13,6 +13,7 @@ export function ProgressBar() {
 
         return () => {
             progressObserver.destroy(); // Очищаем при размонтировании
+            
         };
     }, []);
 
