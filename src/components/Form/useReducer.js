@@ -46,7 +46,7 @@ export function useFormReducer() {
 
     const decrement = useCallback(() => dispatch({ type: DECREMENT }), []);
 
-    const setClear = () => dispatch({ type: SET_CLEAR });
+    const setClear = useCallback(() => dispatch({ type: SET_CLEAR }), []);
 
     return {
         setName,
