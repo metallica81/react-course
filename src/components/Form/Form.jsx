@@ -57,7 +57,7 @@ export function Form() {
                 onIncrement={increment}
             />
 
-            <CommonButton onClick={setClear}>Clear</CommonButton>
+            <CommonButton onClick={setClear} externalSettings={{width: '200px'}}>Clear</CommonButton>
         </form>
     );
 }

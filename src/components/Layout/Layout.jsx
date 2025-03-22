@@ -1,6 +1,6 @@
-import { CommonButton } from "../CommonButton/CommonButton";
 import { ProgressBar } from "../ProgressBar/ProgressBar";
 import styles from "./Layout.module.scss";
+import { ToggleTheme } from "../ThemeContext/ToggleTheme";
 
 export function Layout({ children }) {
     return (
@@ -8,8 +8,7 @@ export function Layout({ children }) {
             <ProgressBar />
             <div className={styles.wrapper}>
                 <header className={styles.header}>
-                    button
-                    {/* <CommonButton onClick={} text='Change theme'></CommonButton> */}
+                    <ToggleTheme />
                 </header>
                 <section>{children}</section>
                 <footer className={styles.footer}>footer</footer>
