@@ -1,17 +1,16 @@
-export const Button = ({ isActive, onClick, text }) => {
+import styles from "./Button.module.scss";
+
+export const Button = ({ isActive, onClick, children }) => {
     return (
-      <button
-        type="button"
-        onClick={onClick}
-        style={{
-          padding: '8px',
-          color: 'white',
-          fontWeight: isActive ? 'bold' : 'normal',
-          outline: 'none'
-        }}
-      >
-        {text}
-      </button>
+        <button
+            type="button"
+            onClick={onClick}
+            className={styles.root}
+            style={{
+                fontWeight: isActive ? "bold" : "normal",
+            }}
+        >
+            {children}
+        </button>
     );
-  };
-  
+};

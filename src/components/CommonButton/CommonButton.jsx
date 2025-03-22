@@ -1,10 +1,7 @@
-export function CommonButton({ text, onClick }) {
+export function CommonButton({ children, onClick }) {
     return (
-        <button
-            style={{ width: "100px" }}
-            onClick={onClick}
-        >
-            {text}
+        <button style={{ width: "100px" }} onClick={onClick}>
+            {children}
         </button>
     );
 }

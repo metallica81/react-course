@@ -1,4 +1,5 @@
 import { useEffect, useState } from "react";
+import styles from './ProgressBar.module.scss';
 
 export function ProgressBar() {
     const [progress, setProgress] = useState(0);
@@ -6,7 +7,7 @@ export function ProgressBar() {
     useEffect(() => {
         const handleScroll = () => {
             const scrollTop = window.scrollY;
-            
+
             const docHeight = document.documentElement.scrollHeight;
 
             const viewportHeight = window.innerHeight;
@@ -24,14 +25,9 @@ export function ProgressBar() {
 
     return (
         <div
+            className={styles.root}
             style={{
-                position: "fixed",
-                top: 0,
-                left: 0,
-                height: "4px",
-                backgroundColor: "blue",
                 width: `${progress}%`,
-                transition: "width 0.1s ease-out",
             }}
         />
     );

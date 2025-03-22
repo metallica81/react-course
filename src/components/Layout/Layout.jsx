@@ -1,14 +1,19 @@
-import { ProgressBar } from "../ProgressBar/ProgressBar"
-export function Layout({children}) {
+import { CommonButton } from "../CommonButton/CommonButton";
+import { ProgressBar } from "../ProgressBar/ProgressBar";
+import styles from "./Layout.module.scss";
+
+export function Layout({ children }) {
     return (
         <>
             <ProgressBar />
-            <div style={{"paddingLeft": "30px", display: "flex", flexDirection: "column", gap: "30px"}}>
-                
-                <header style={{border: "1px white solid", width: "800px", height: "50px"}}>header</header>
+            <div className={styles.wrapper}>
+                <header className={styles.header}>
+                    button
+                    {/* <CommonButton onClick={} text='Change theme'></CommonButton> */}
+                </header>
                 <section>{children}</section>
-                <footer style={{border: "1px white solid", height: "50px"}}>footer</footer>
+                <footer className={styles.footer}>footer</footer>
             </div>
         </>
-    )
+    );
 }
