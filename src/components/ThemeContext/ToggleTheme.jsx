@@ -1,13 +1,16 @@
 import { use } from "react";
 import { CommonButton } from "../CommonButton/CommonButton";
-import { ThemeContext } from "../ThemeContext";
+import { ThemeContext } from "./index";
 
 export const ToggleTheme = () => {
-  const { theme, toggleTheme } = use(ThemeContext);
+    const { theme, toggleTheme } = use(ThemeContext);
 
-  return (
-    <CommonButton onClick={toggleTheme}>
-      {theme === "light" ? "switch to dark" : "switch to light"}
-    </CommonButton>
-  );
+    return (
+        <CommonButton
+            onClick={toggleTheme}
+            externalSettings={{ margin: "20px" }}
+        >
+            {theme === "default" ? "switch to alt" : "switch to default"}
+        </CommonButton>
+    );
 };

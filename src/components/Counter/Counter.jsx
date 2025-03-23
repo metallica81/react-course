@@ -1,11 +1,14 @@
-import styles from './Counter.module.scss';
+import styles from "./Counter.module.scss";
+import { UserContext } from "../UserContext";
+import { use } from "react";
 
 export function Counter({ onIncrement, count, onDecrement }) {
+    const { status } = use(UserContext);
     return (
         <div className={styles.root}>
-            <button onClick={onDecrement}>-</button>
+            {status == "sign in" && <button onClick={onDecrement}>-</button>}
             {count}
-            <button onClick={onIncrement}>+</button>
+            {status == "sign in" && <button onClick={onIncrement}>+</button>}
         </div>
-    )
+    );
 }
