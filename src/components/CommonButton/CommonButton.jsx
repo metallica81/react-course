@@ -3,15 +3,16 @@ import { use } from "react";
 import classNames from "classnames";
 import styles from './CommonButton.module.scss';
 
-export function CommonButton({ children, onClick, externalSettings }) {
+export function CommonButton({ variant = "primary", children, onClick, externalSettings }) {
     const { theme } = use(ThemeContext);
     return (
         <button
-            style={{ ...externalSettings }}
             onClick={onClick}
-            className={classNames(styles.button, {
+            className={classNames(externalSettings, {
                 [styles.default]: theme === "default",
                 [styles.alternative]: theme === "alternative",
+                [styles.primary]: variant === "primary",
+                [styles.danger]: variant === "danger"
             })}
         >
             {children}

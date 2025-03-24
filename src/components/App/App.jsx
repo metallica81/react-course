@@ -7,7 +7,7 @@ export const App = () => {
     return (
         <UserContext>
             <ThemeContext>
-                <Layout style={{ paddingLeft: "30px" }}>
+                <Layout>
                     <Pages />
                 </Layout>
             </ThemeContext>

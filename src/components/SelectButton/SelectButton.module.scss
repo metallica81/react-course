@@ -1,6 +1,14 @@
-.button {
+.primary {
     padding: 13px;
     font-size: 18px;
+    width: 100px;
+}
+
+.danger {
+    padding: 13px;
+    font-size: 18px;
+    background-color: red;
+    width: 100px;
 }
 
 .default {

@@ -1,14 +1,22 @@
-.button {
+.primary {
     padding: 13px;
     font-size: 18px;
+    width: 150px;
 }
 
-.default {
+.danger {
+    padding: 13px;
+    font-size: 18px;
+    background-color: red;
+    width: 150px;
+}
+
+.primary.default {
     background-color: rgba(95, 72, 179, 0.66);
     color: black
 }
 
-.alternative {
+.primary.alternative {
     background-color: black;
     color: white
 }
