@@ -5,8 +5,14 @@ import { use } from "react";
 
 export function DishCounter() {
     const { isAuth } = use(UserContext);
-    const {increment, count, decrement} = useCounter();
-    return isAuth === null ? null : (
-        <Counter onDecrement={decrement} count={count} onIncrement={increment} isAuthorized={isAuth} />
-    );
+    const { increment, count, decrement } = useCounter();
+    if (isAuth) {
+        return (
+            <Counter
+                onDecrement={decrement}
+                count={count}
+                onIncrement={increment}
+            />
+        );
+    }
 }

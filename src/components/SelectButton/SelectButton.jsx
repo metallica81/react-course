@@ -7,7 +7,7 @@ export const SelectButton = ({
     isActive,
     onClick,
     children,
-    className,
+    externalClassname,
     variant = "primary",
 }) => {
     const { theme } = use(ThemeContext);
@@ -15,7 +15,7 @@ export const SelectButton = ({
         <button
             type="button"
             onClick={onClick}
-            className={classNames(className, {
+            className={classNames(externalClassname, {
                 [styles.default]: theme === "default",
                 [styles.alternative]: theme === "alternative",
                 [styles.primary]: variant === "primary",

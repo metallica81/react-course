@@ -1,4 +1,5 @@
 import { DishCounter } from "./DishCounter/DishCounter";
+import styles from "./Menu.module.scss";
 
 export function Menu({ menu }) {
     return (
@@ -10,11 +11,7 @@ export function Menu({ menu }) {
                         Boolean(menu.name) && (
                             <li
                                 key={menu.id}
-                                style={{
-                                    display: "flex",
-                                    gap: "10px",
-                                    alignItems: "center",
-                                }}
+                                className={styles.root}
                             >
                                 {menu.name}
                                 <DishCounter id={menu.id} />

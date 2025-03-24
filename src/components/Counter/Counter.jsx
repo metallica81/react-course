@@ -1,12 +1,11 @@
 import styles from "./Counter.module.scss";
 
-export function Counter({ onIncrement, count, onDecrement, isAuthorized }) {  
-
+export function Counter({ onIncrement, count, onDecrement }) {
     return (
         <div className={styles.root}>
-            { isAuthorized && <button onClick={onDecrement}>-</button>}
+            <button onClick={onDecrement}>-</button>
             {count}
-            { isAuthorized && <button onClick={onIncrement}>+</button>}
+            <button onClick={onIncrement}>+</button>
         </div>
     );
 }
