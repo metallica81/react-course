@@ -4,18 +4,18 @@ import { UserContext } from "./index";
 import styles from './ToggleStatus.module.scss';
 
 export const ToggleStatus = () => {
-    const { status, toggleStatus, userName } = use(UserContext);
+    const { isAuth, toggleStatus, userName } = use(UserContext);
 
     return (
         <>
-            {status === "sign out" && (
+            {!!isAuth && (
                 <span className={styles.span}>{userName}</span>
             )}
             <CommonButton
                 onClick={toggleStatus}
                 externalSettings={styles.externalSettings}
             >
-                {status === "sign in" ? "sign out" : "sign in"}
+                { isAuth ? "sign out" : "sign in" }
             </CommonButton>
         </>
     );

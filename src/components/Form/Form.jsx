@@ -2,6 +2,8 @@ import { handleSubmit } from "./handleSubmit";
 import { useFormReducer } from "./useReducer";
 import { CommonButton } from "../CommonButton/CommonButton";
 import { Counter } from "../Counter/Counter";
+import { UserContext } from "../UserContext";
+import { use } from "react";
 
 export function Form() {
     const {
@@ -13,7 +15,10 @@ export function Form() {
         setClear,
         form,
     } = useFormReducer();
+
     const { name, text, rating, count } = form;
+
+    const { isAuth } = use(UserContext);
 
     return (
         <form
@@ -55,6 +60,7 @@ export function Form() {
                 onDecrement={decrement}
                 count={count}
                 onIncrement={increment}
+                isAuthorized={isAuth}
             />
 
             <CommonButton onClick={setClear} externalSettings={{width: '200px'}}>Clear</CommonButton>

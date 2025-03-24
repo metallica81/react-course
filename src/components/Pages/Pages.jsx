@@ -15,7 +15,7 @@ export const Pages = () => {
                         key={id}
                         isActive={id === restaurant.id}
                         onClick={() => handleChooseRestaurant(id)}
-                        externalSettings={styles.settingsForButton}
+                        className={styles.settingsForButton}
                     >
                         {name}
                     </SelectButton>

@@ -1,21 +1,21 @@
 import { UserContext as UserContextProvider } from ".";
 import { useState } from "react";
 
+const userName = "userName";
+
 export const UserContext = ({ children }) => {
-    const [status, setStatus] = useState("sign out");
+    const [isAuth, setIsAuth] = useState(false);
 
     const toggleStatus = () => {
-        if (status === "sign in") {
-            setStatus("sign out");
+        if (!isAuth) {
+            setIsAuth(true);
         } else {
-            setStatus("sign in");
+            setIsAuth(false);
         }
     };
 
-    const userName = "userName";
-
     return (
-        <UserContextProvider value={{ status, toggleStatus, userName }}>
+        <UserContextProvider value={{ isAuth, toggleStatus, userName }}>
             {children}
         </UserContextProvider>
     );
