@@ -1,10 +1,11 @@
-export function Counter({ onIncrement, count, onDecrement }) {
+import styles from "./Counter.module.scss";
 
+export function Counter({ onIncrement, count, onDecrement }) {
     return (
-        <div style={{"display": "flex", "gap": "10px", "alignItems": "center"}}>
+        <div className={styles.root}>
             <button onClick={onDecrement}>-</button>
             {count}
             <button onClick={onIncrement}>+</button>
         </div>
-    )
+    );
 }

@@ -1,26 +1,26 @@
 import { restaurants } from "../../mock.js";
 import { Restaurant } from "../Restaurant/Restaurant.jsx";
-import { Button } from "../Button/Button.jsx";
+import { CommonButton } from "../CommonButton/CommonButton.jsx";
 import { useRestaurantPage } from "./useRestruantPage.js";
+import styles from "./Pages.module.scss";
 
 export const Pages = () => {
     const { restaurant, handleChooseRestaurant } = useRestaurantPage();
 
     return (
-        <div style={{display: "flex", flexDirection: "column", gap: "10px"}}>
-            <nav
-                style={{
-                    display: "flex",
-                    gap: "20px"
-                }}
-            >
+        <div className={styles.wrapper}>
+            <nav className={styles.nav}>
                 {restaurants.map(({ id, name }) => (
-                    <Button
+                    <CommonButton
                         key={id}
+                        sizeVariant="navSelectorSize"
+                        colorVariant="navSelectorColor"
                         isActive={id === restaurant.id}
                         onClick={() => handleChooseRestaurant(id)}
-                        text={name}
-                    />
+                        externalClassname={styles.settingsForButton}
+                    >
+                        {name}
+                    </CommonButton>
                 ))}
             </nav>
 

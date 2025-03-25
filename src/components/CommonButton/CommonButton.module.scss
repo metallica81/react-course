@@ -1,0 +1,31 @@
+.commonSize {
+    padding: 13px;
+    font-size: 18px;
+    width: 150px;
+}
+
+.navSelectorSize {
+    width: 100px;
+    padding: 13px;
+}
+
+.default {
+    background-color: rgba(95, 72, 179, 0.66);
+
+    &.commonColor {
+        color: white;
+    }
+    &.navSelectorColor {
+        background-color: green;
+    }
+}
+
+.alternative {
+    background-color: black;
+    color: white
+}
+
+.isActive {
+    font-weight: bold;
+}
+

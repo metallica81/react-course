@@ -2,11 +2,24 @@ import { handleSubmit } from "./handleSubmit";
 import { useFormReducer } from "./useReducer";
 import { CommonButton } from "../CommonButton/CommonButton";
 import { Counter } from "../Counter/Counter";
+import styles from "./Form.module.scss";
+import { use } from "react";
+import { UserContext } from "../UserContext";
 
 export function Form() {
+    const {
+        setName,
+        setText,
+        setRating,
+        increment,
+        decrement,
+        setClear,
+        form,
+    } = useFormReducer();
 
-    const { setName, setText, setRating, increment, decrement, setClear, form } = useFormReducer();
-    const {name, text, rating, count } = form;
+    const { name, text, rating, count } = form;
+
+    const { isAuth } = use(UserContext);
 
     return (
         <form
@@ -44,12 +57,19 @@ export function Form() {
                 ))}
                 <br />
             </div>
-            <Counter onDecrement={decrement} count={count} onIncrement={increment} />
-            
-            <CommonButton 
-                onClick={setClear} 
-                text={ 'Clear' } 
-            />
+
+            {isAuth && <Counter
+                onDecrement={decrement}
+                count={count}
+                onIncrement={increment}
+            />}
+
+            <CommonButton
+                onClick={setClear}
+                externalClassname={styles.commonButton}
+            >
+                Clear
+            </CommonButton>
         </form>
     );
 }
