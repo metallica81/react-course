@@ -1,22 +1,31 @@
-.primary {
+.commonSize {
     padding: 13px;
     font-size: 18px;
     width: 150px;
 }
 
-.danger {
+.navSelectorSize {
+    width: 100px;
     padding: 13px;
-    font-size: 18px;
-    background-color: red;
-    width: 150px;
 }
 
-.primary.default {
+.default {
     background-color: rgba(95, 72, 179, 0.66);
-    color: black
+
+    &.commonColor {
+        color: white;
+    }
+    &.navSelectorColor {
+        background-color: green;
+    }
 }
 
-.primary.alternative {
+.alternative {
     background-color: black;
     color: white
 }
+
+.isActive {
+    font-weight: bold;
+}
+

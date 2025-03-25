@@ -6,13 +6,14 @@ import { use } from "react";
 export function DishCounter() {
     const { isAuth } = use(UserContext);
     const { increment, count, decrement } = useCounter();
-    if (isAuth) {
-        return (
-            <Counter
-                onDecrement={decrement}
-                count={count}
-                onIncrement={increment}
-            />
-        );
+    if (!isAuth) {
+        return null;
     }
+    return (
+        <Counter
+            onDecrement={decrement}
+            count={count}
+            onIncrement={increment}
+        />
+    );
 }
