@@ -2,7 +2,7 @@ import { Menu } from "../Menu/Menu";
 import { Reviews } from "../Reviews/Review";
 import styles from './Restaurant.module.scss';
 
-export const Restaurant = ({ name, menu = [], reviews = [] }) => {
+export const Restaurant = ({ name, menu, reviews }) => {
 
     return (
         <section

@@ -1,5 +1,4 @@
 import { RestaurantContainer } from "../Restaurant/RestaurantContainer.jsx";
-import { CommonButton } from "../CommonButton/CommonButton.jsx";
 import { useRestaurantPage } from "./useRestruantPage.js";
 import styles from "./Pages.module.scss";
 import { useSelector } from "react-redux";

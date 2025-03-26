@@ -1,21 +1,27 @@
 import { DishCounter } from "./DishCounter/DishCounter";
 import styles from "./Menu.module.scss";
+import { selectDishById } from "../../Redux/Entities/Dish/slice";
+import { useSelector } from "react-redux";
 
 export function Menu({ menu }) {
+
+    const dishes = useSelector((state) =>
+        menu.map((dishId) => selectDishById(state, dishId))
+    );
 
     return (
         <>
             <h3>Меню</h3>
             <ul>
-                {menu.map((menu) => {
+                {dishes.map((menu) => {
                     return (
-                        Boolean(menu) && (
+                        Boolean(menu.name) && (
                             <li
-                                key={menu}
+                                key={menu.name}
                                 className={styles.root}
                             >
-                                {menu}
-                                <DishCounter id={menu} />
+                                {menu.name}
+                                <DishCounter id={menu.id} />
                             </li>
                         )
                     );
