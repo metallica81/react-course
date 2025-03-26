@@ -2,19 +2,20 @@ import { DishCounter } from "./DishCounter/DishCounter";
 import styles from "./Menu.module.scss";
 
 export function Menu({ menu }) {
+
     return (
         <>
             <h3>Меню</h3>
             <ul>
                 {menu.map((menu) => {
                     return (
-                        Boolean(menu.name) && (
+                        Boolean(menu) && (
                             <li
-                                key={menu.id}
+                                key={menu}
                                 className={styles.root}
                             >
-                                {menu.name}
-                                <DishCounter id={menu.id} />
+                                {menu}
+                                <DishCounter id={menu} />
                             </li>
                         )
                     );
