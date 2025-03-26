@@ -7,7 +7,6 @@ import { addToCart, removeFromCart } from "../../../Redux/Entities/Cart/slice";
 export function DishCounter({ dishId }) {
     const { isAuth } = use(UserContext);
     const dispatch = useDispatch();
-    console.log(dishId)
     const count = useSelector((state) => state.cartSlice.items?.[dishId] || 0);
 
     if (!isAuth) {
