@@ -21,7 +21,7 @@ export function Menu({ menu }) {
                                 className={styles.root}
                             >
                                 {menu.name}
-                                <DishCounter id={menu.id} />
+                                <DishCounter dishId={menu.id} />
                             </li>
                         )
                     );

@@ -9,6 +9,7 @@ const initialState = {
     }, {}),
     ids: normalizedDishes.map(({ id }) => id)
 }
+
 export const dishSlice = createSlice({
     name: "dishSlice",
     initialState,
