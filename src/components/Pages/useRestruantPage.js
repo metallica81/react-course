@@ -1,18 +1,18 @@
 import { useState } from "react";
-import { restaurants } from "../../mock";
 
-export const useRestaurantPage = () => {
-    const [restaurant, setRestaurant] = useState(restaurants[0]);
+export const useRestaurantPage = (restaurantIds) => {
+    
+    const [activeRestaurantId, setActiveRestaurantId] = useState(restaurantIds[0]);
 
     const handleChooseRestaurant = (id) => {
-        const viewRestorant = restaurants.find(
-            (restaurant) => restaurant.id === id
-        );
-        setRestaurant(viewRestorant);
+        if (activeRestaurantId === id) {
+            return;
+        }
+        setActiveRestaurantId(id);
     };
 
     return {
-        restaurant,
+        activeRestaurantId,
         handleChooseRestaurant,
     };
 };
