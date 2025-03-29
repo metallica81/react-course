@@ -1,15 +1,14 @@
 import { useSelector } from "react-redux";
-import { selectDishById } from "../../Redux/Entities/Dish/slice";
 import { Cart } from "./Cart";
+import { selectDishIds } from "../../Redux/Entities/Dish/slice";
 
 export function CartContainer() {
     const dishInCart = useSelector((state) => state.cartSlice.items || {});
+    
+    const dishIds = useSelector(selectDishIds);
 
-    const dishes = useSelector((state) =>
-        Object.keys(dishInCart).map((dishId) => selectDishById(state, dishId))
-    );
 
     return (
-        <Cart dishes={dishes} dishInCart={dishInCart}/>
+        <Cart dishIds={dishIds} dishInCart={dishInCart}/>
     );
 }

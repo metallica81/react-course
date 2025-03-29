@@ -1,26 +1,12 @@
-import { Form } from "../Form/Form";
-import { selectReviewById } from "../../Redux/Entities/Review/slice";
 import { useSelector } from "react-redux";
+import { selectReviewById } from "../../Redux/Entities/Review/slice";
 
-export function Reviews({ reviews }) {
-    const reviewText = useSelector((state) =>
-        reviews.map((reviewId) => selectReviewById(state, reviewId))
-    );
+export function Review({ reviewsIds }) {
+    const review = useSelector((state) => selectReviewById(state, reviewsIds))
 
-    return (
-        <>
-            <h3>Отзывы</h3>
-            <ul>
-                {reviewText.map((reviews) => {
-                    return (
-                        Boolean(reviews.text) && (
-                            <li key={reviews.id}>{reviews.text}</li>
-                        )
-                    );
-                })}
-            </ul>
-            
-            <Form />
-        </>
+    return(
+        Boolean(review.text) && (
+            <li key={review.id}>{review.text}</li>
+        )
     );
 }

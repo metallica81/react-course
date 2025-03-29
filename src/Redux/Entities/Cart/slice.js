@@ -14,12 +14,14 @@ export const cartSlice = createSlice({
         },
         removeFromCart: (state, action) => {
             const { productId } = action.payload;
-            if (state.items[productId]) {
-                state.items[productId]--;
-                if (state.items[productId] === 0) {
-                    delete state.items[productId];
-                }
+            if (!state.items[productId]) {
+                return null;
             }
+            state.items[productId]--;
+            if (state.items[productId] === 0) {
+                delete state.items[productId];
+            }
+            
         },
         clearCart: (state) => {
             state.items = {};

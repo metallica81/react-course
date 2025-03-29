@@ -2,7 +2,7 @@ import { useSelector } from "react-redux";
 import { selectRestaurantById } from "../../Redux/Entities/Restaurant/slice";
 import { CommonButton } from "../CommonButton/CommonButton";
 
-export const TabContainer = ({ id, externalClassname, onClick, isActive }) => {
+export const TabRestorauntContainer = ({ id, externalClassname, onClick, isActive }) => {
     const restaurant = useSelector((state) => selectRestaurantById(state, id));
 
     if (!restaurant) {

@@ -1,29 +1,16 @@
 import { Counter } from "../../Counter/Counter";
 import { UserContext } from "../../UserContext";
 import { use } from "react";
-import { useDispatch, useSelector } from "react-redux";
-import { addToCart, removeFromCart } from "../../../Redux/Entities/Cart/slice";
+import { useDishCounter } from "./useDishCounter";
 
 export function DishCounter({ dishId }) {
     const { isAuth } = use(UserContext);
-    const dispatch = useDispatch();
-    const count = useSelector((state) => state.cartSlice.items?.[dishId] || 0);
+
+    const { handleDecrement, count, handleIncrement } = useDishCounter(dishId);
 
     if (!isAuth) {
         return null;
     }
-
-    const handleIncrement = () => {
-        if (count < 5) {
-            dispatch(addToCart({ productId: dishId }));
-        }
-    };
-
-    const handleDecrement = () => {
-        if (count > 0) {
-            dispatch(removeFromCart({ productId: dishId }));
-        }
-    };
 
     return (
         <Counter
