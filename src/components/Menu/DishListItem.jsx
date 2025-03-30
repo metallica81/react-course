@@ -3,7 +3,7 @@ import styles from "./Menu.module.scss";
 import { useSelector } from "react-redux";
 import { selectDishById } from "../../Redux/Entities/Dish/slice";
 
-export function Dish({ dishId }) {
+export function DishListItem({ dishId }) {
     const dish = useSelector((state) => selectDishById(state, dishId));
 
     if (!dish) {

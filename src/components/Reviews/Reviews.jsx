@@ -1,5 +1,5 @@
 import { Form } from "../Form/Form";
-import { Review } from "./Review";
+import { ReviewListItem } from "./ReviewListItem";
 
 export function Reviews({ reviewsIds }) {
 
@@ -7,8 +7,8 @@ export function Reviews({ reviewsIds }) {
         <>
             <h3>Отзывы</h3>
             <ul>
-                {reviewsIds.map((reviewsIds) => {
-                    return <Review key={reviewsIds} reviewsIds={reviewsIds} />
+                {reviewsIds.map((reviewsId) => {
+                    return <ReviewListItem key={reviewsId} reviewsId={reviewsId} />
                 })}
             </ul>
             

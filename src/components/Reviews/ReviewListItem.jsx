@@ -1,8 +1,8 @@
 import { useSelector } from "react-redux";
 import { selectReviewById } from "../../Redux/Entities/Review/slice";
 
-export function Review({ reviewsIds }) {
-    const review = useSelector((state) => selectReviewById(state, reviewsIds))
+export function ReviewListItem({ reviewsId }) {
+    const review = useSelector((state) => selectReviewById(state, reviewsId))
 
     return(
         Boolean(review.text) && (

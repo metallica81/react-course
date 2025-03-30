@@ -1,6 +1,6 @@
-export function CartItem({ id, name, count }) {
+export function CartListItem({ name, count }) {
     return (
-        <li key={id}>
+        <li>
             {name} — {count} шт.
         </li>
     );

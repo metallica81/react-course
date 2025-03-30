@@ -13,10 +13,6 @@ export const Restaurant = ({ name, menu, reviews }) => {
             {!!menu.length && <Menu menu={menu} />}
             {!!reviews.length && <Reviews reviewsIds={reviews} />}
             <CartContainer />
-            {!!menu.length && <Menu menu={menu} />}
-            {!!reviews.length && <Reviews reviewsIds={reviews} />}
-            {!!menu.length && <Menu menu={menu} />}
-            {!!reviews.length && <Reviews reviewsIds={reviews} />}
         </section>
     );
 };

@@ -3,7 +3,7 @@ import { useRestaurantPage } from "./useRestruantPage.js";
 import styles from "./Pages.module.scss";
 import { useSelector } from "react-redux";
 import { selectRestaurantIds } from "../../Redux/Entities/Restaurant/slice.js";
-import { TabRestorauntContainer } from "../TabRestorauntContainer/TabRestorauntContainer.jsx";
+import { TabRestaurantContainer } from "../TabRestorauntContainer/TabRestaurantContainer.jsx";
 
 export const Pages = () => {
     const restaurantIds = useSelector(selectRestaurantIds);
@@ -14,7 +14,7 @@ export const Pages = () => {
         <div className={styles.wrapper}>
             <nav className={styles.nav}>
                 {restaurantIds.map((id) => (
-                    <TabRestorauntContainer
+                    <TabRestaurantContainer
                         key={id}
                         id={id}
                         externalClassname={styles.settingsForButton}
