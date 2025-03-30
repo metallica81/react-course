@@ -1,19 +1,22 @@
 import { Counter } from "../../Counter/Counter";
-import { useCounter } from "../../Counter/useCounter";
 import { UserContext } from "../../UserContext";
 import { use } from "react";
+import { useDishCounter } from "./useDishCounter";
 
-export function DishCounter() {
+export function DishCounter({ dishId }) {
     const { isAuth } = use(UserContext);
-    const { increment, count, decrement } = useCounter();
+
+    const { handleDecrement, count, handleIncrement } = useDishCounter(dishId);
+
     if (!isAuth) {
         return null;
     }
+
     return (
         <Counter
-            onDecrement={decrement}
+            onDecrement={handleDecrement}
             count={count}
-            onIncrement={increment}
+            onIncrement={handleIncrement}
         />
     );
 }

@@ -1,30 +1,35 @@
-import { restaurants } from "../../mock.js";
-import { Restaurant } from "../Restaurant/Restaurant.jsx";
-import { CommonButton } from "../CommonButton/CommonButton.jsx";
+import { RestaurantContainer } from "../Restaurant/RestaurantContainer.jsx";
 import { useRestaurantPage } from "./useRestruantPage.js";
 import styles from "./Pages.module.scss";
+import { useSelector } from "react-redux";
+import { selectRestaurantIds } from "../../Redux/Entities/Restaurant/slice.js";
+import { TabRestaurantContainer } from "../TabRestorauntContainer/TabRestaurantContainer.jsx";
 
 export const Pages = () => {
-    const { restaurant, handleChooseRestaurant } = useRestaurantPage();
+    const restaurantIds = useSelector(selectRestaurantIds);
+
+    const { activeRestaurantId, handleChooseRestaurant } = useRestaurantPage(restaurantIds);
 
     return (
         <div className={styles.wrapper}>
             <nav className={styles.nav}>
-                {restaurants.map(({ id, name }) => (
-                    <CommonButton
+                {restaurantIds.map((id) => (
+                    <TabRestaurantContainer
                         key={id}
-                        sizeVariant="navSelectorSize"
-                        colorVariant="navSelectorColor"
-                        isActive={id === restaurant.id}
-                        onClick={() => handleChooseRestaurant(id)}
+                        id={id}
                         externalClassname={styles.settingsForButton}
-                    >
-                        {name}
-                    </CommonButton>
+                        onClick={() => handleChooseRestaurant(id)}
+                        isActive={id === activeRestaurantId}
+                    />
                 ))}
             </nav>
 
-            {!!restaurant && <Restaurant restaurant={restaurant} />}
+            {!!activeRestaurantId && (
+                <RestaurantContainer
+                    key={activeRestaurantId}
+                    id={activeRestaurantId}
+                />
+            )}
         </div>
     );
 };

@@ -1,9 +1,9 @@
 import { Menu } from "../Menu/Menu";
-import { Reviews } from "../Reviews/Review";
+import { Reviews } from "../Reviews/Reviews";
 import styles from './Restaurant.module.scss';
+import { CartContainer } from "../Cart/CartContainer";
 
-export const Restaurant = ({ restaurant }) => {
-    const { name, menu, reviews } = restaurant;
+export const Restaurant = ({ name, menu, reviews }) => {
 
     return (
         <section
@@ -11,11 +11,8 @@ export const Restaurant = ({ restaurant }) => {
         >
             <h2>{name}</h2>
             {!!menu.length && <Menu menu={menu} />}
-            {!!reviews.length && <Reviews reviews={reviews} />}
-            {!!menu.length && <Menu menu={menu} />}
-            {!!reviews.length && <Reviews reviews={reviews} />}
-            {!!menu.length && <Menu menu={menu} />}
-            {!!reviews.length && <Reviews reviews={reviews} />}
+            {!!reviews.length && <Reviews reviewsIds={reviews} />}
+            <CartContainer />
         </section>
     );
 };
