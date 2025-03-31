@@ -36,12 +36,21 @@ export const App = () => {
                                             }
                                         />
                                         <Route path="menu" element={<Menu />} />
-                                        <Route path="reviews" element={<Reviews />} />
+                                        <Route
+                                            path="reviews"
+                                            element={<Reviews />}
+                                        />
                                     </Route>
                                 </Route>
-                                <Route path="dish/:dishId" element={<DishPage />} />
+                                <Route
+                                    path="dish/:dishId"
+                                    element={<DishPage />}
+                                />
                             </Route>
-                            <Route path="*" element={<Navigate to="/" replace />} />
+                            <Route
+                                path="*"
+                                element={<Navigate to="/" replace />}
+                            />
                         </Routes>
                     </BrowserRouter>
                 </ThemeContext>
