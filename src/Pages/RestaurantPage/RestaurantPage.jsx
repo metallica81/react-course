@@ -1,5 +1,5 @@
 import { Outlet, useParams } from "react-router";
-import { RestaurantContainer } from "../Restaurant/RestaurantContainer";
+import { RestaurantContainer } from "../../components/Restaurant/RestaurantContainer";
 
 export function RestaurantPage() {
     const { restaurantId } = useParams();
@@ -7,7 +7,7 @@ export function RestaurantPage() {
     return (
         <>
             <RestaurantContainer key={restaurantId} id={restaurantId} />
-            <Outlet />
+            <Outlet context={{ restaurantId }}/>
         </>
     );
 }
