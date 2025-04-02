@@ -1,15 +1,28 @@
-import { useRestaurantPage } from "./useRestruantPage.js";
 import styles from "./Pages.module.scss";
 import { useSelector } from "react-redux";
 import { selectRestaurantIds } from "../../Redux/Entities/Restaurant/slice.js";
 import { TabRestaurantContainer } from "../../components/TabRestorauntContainer/TabRestaurantContainer.jsx";
 import { Outlet } from "react-router";
+import { getRestaurants } from "../../Redux/Entities/Restaurant/getRestaurant.js";
+import { useRequest } from "../../Redux/Hooks/useRequest.js";
 
 export const RestaurantsTabsPage = () => {
-    const restaurantIds = useSelector(selectRestaurantIds);
+    const requestStatus = useRequest(getRestaurants);
 
-    const { activeRestaurantId, handleChooseRestaurant } =
-        useRestaurantPage(restaurantIds);
+
+    const restaurantIds = useSelector(selectRestaurantIds);
+    console.log(restaurantIds)
+
+    // const { activeRestaurantId, handleChooseRestaurant } =
+    //     useRestaurantPage(restaurantIds);
+
+    if (requestStatus === "idle" || requestStatus === "pending") {
+        return "loading...";
+    }
+
+    if (requestStatus === "rejected") {
+        return "error";
+    }
 
     return (
         <div className={styles.wrapper}>
@@ -19,8 +32,8 @@ export const RestaurantsTabsPage = () => {
                         key={id}
                         id={id}
                         externalClassname={styles.settingsForButton}
-                        onClick={() => handleChooseRestaurant(id)}
-                        isActive={id === activeRestaurantId}
+                        // onClick={() => handleChooseRestaurant(id)}
+                        // isActive={id === activeRestaurantId}
                     />
                 ))}
             </nav>
