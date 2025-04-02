@@ -1,5 +1,6 @@
 import { createSlice } from "@reduxjs/toolkit";
-import { normalizedDishes } from "../../../normalized-mock";
+
+export const entityAdapter = createEntityAdapter();
 
 const initialState = {
     entities: normalizedDishes.reduce((acc, item) => {
