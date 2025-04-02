@@ -4,13 +4,13 @@ import { Layout } from "../Layout/Layout";
 import { ThemeContext } from "../ThemeContext/ThemeContext";
 import { UserContext } from "../UserContext/UserContext";
 import { BrowserRouter, Route, Routes } from "react-router";
-import { HomePage } from "../Pages/HomePage";
-import { RestaurantsPages } from "../Pages/RestaurantPages";
-import { RestaurantPage } from "../Pages/RestaurantPage";
+import { HomePage } from "../../Pages/HomePage/HomePage";
+import { RestaurantsTabsPage } from "../../Pages/RestaurantsTabsPage/RestaurantsTabsPage";
+import { RestaurantPage } from "../../Pages/RestaurantPage/RestaurantPage";
 import { Navigate } from "react-router";
-import { Menu } from "../Menu/Menu";
-import { Reviews } from "../Reviews/Reviews";
-import { DishPage } from "../Menu/DishPage";
+import { RestaurantMenuPage } from "../../Pages/RestaurantMenuPage/RestaurantMenuPage";
+import { RestaurantReviewsPage } from "../../Pages/RestaurantReviewsPage/RestaurantReviewsPage";
+import { DishPage } from "../../Pages/DishPage/DishPage";
 
 export const App = () => {
     return (
@@ -23,7 +23,7 @@ export const App = () => {
                                 <Route index element={<HomePage />} />
                                 <Route
                                     path="/restaurants"
-                                    element={<RestaurantsPages />}
+                                    element={<RestaurantsTabsPage />}
                                 >
                                     <Route
                                         path=":restaurantId"
@@ -35,10 +35,13 @@ export const App = () => {
                                                 <Navigate to="menu" replace />
                                             }
                                         />
-                                        <Route path="menu" element={<Menu />} />
+                                        <Route
+                                            path="menu"
+                                            element={<RestaurantMenuPage/>}
+                                        />
                                         <Route
                                             path="reviews"
-                                            element={<Reviews />}
+                                            element={<RestaurantReviewsPage />}
                                         />
                                     </Route>
                                 </Route>

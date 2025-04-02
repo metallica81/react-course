@@ -1,13 +1,15 @@
-import { useParams } from "react-router";
-import { DishListItem } from "./DishListItem";
+import { DishListItem } from "../../components/Menu/DishListItem";
 import { useSelector } from "react-redux";
+import { useOutletContext } from "react-router";
 import { selectRestaurantById } from "../../Redux/Entities/Restaurant/slice";
 
-export function Menu() {
-    const { restaurantId } = useParams();
+export function RestaurantMenuPage() {
+    const { restaurantId } = useOutletContext();
 
-    const restaurantDishIds = useSelector((state) => selectRestaurantById(state, restaurantId));
-    
+    const restaurantDishIds = useSelector((state) =>
+        selectRestaurantById(state, restaurantId)
+    );
+
     return (
         <>
             <h3>Меню</h3>

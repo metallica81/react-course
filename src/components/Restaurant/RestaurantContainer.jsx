@@ -13,6 +13,6 @@ export const RestaurantContainer = ({ id }) => {
     const { name } = restaurant;
 
     return (
-        <Restaurant name={name} extenalClassname={styles.extenalClassname} />
+        <Restaurant name={name} externalClassname={styles.externalClassname} />
     );
 };
