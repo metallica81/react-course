@@ -1,0 +1,20 @@
+.h3 {
+   color: white;
+}
+
+.outerContainer {
+    justify-content: center;
+    align-items: center;
+    display: flex;
+}
+
+.innerContainer {
+    text-align: center;
+    justify-content: center;
+    align-items: center;
+    padding: 20px;
+    border: 1px solid #e5e5e5;
+    border-radius: 10px;
+    background-color: transparent;
+    width: 300px;
+}

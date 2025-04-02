@@ -1,18 +1,20 @@
-import { Menu } from "../Menu/Menu";
-import { Reviews } from "../Reviews/Reviews";
 import styles from './Restaurant.module.scss';
-import { CartContainer } from "../Cart/CartContainer";
+import { Link } from "react-router";
+import { Form } from "../Form/Form";
+import { TabLink } from '../TabRestorauntContainer/TabLink';
 
-export const Restaurant = ({ name, menu, reviews }) => {
+export const Restaurant = ({ name, externalClassname }) => {
 
     return (
         <section
             className={styles.section}
         >
             <h2>{name}</h2>
-            {!!menu.length && <Menu menu={menu} />}
-            {!!reviews.length && <Reviews reviewsIds={reviews} />}
-            <CartContainer />
+            <div className={externalClassname}>
+                <TabLink to="menu">Menu</TabLink>
+                <TabLink to="reviews">Reviews</TabLink>
+            </div>
+            <Form />
         </section>
     );
 };

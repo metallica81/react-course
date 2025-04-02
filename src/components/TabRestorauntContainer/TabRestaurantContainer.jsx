@@ -1,8 +1,10 @@
 import { useSelector } from "react-redux";
 import { selectRestaurantById } from "../../Redux/Entities/Restaurant/slice";
 import { CommonButton } from "../CommonButton/CommonButton";
+import { NavLink } from "react-router";
+import { TabNavLink } from "./TabNavLink";
 
-export const TabRestaurantContainer = ({ id, externalClassname, onClick, isActive }) => {
+export const TabRestaurantContainer = ({ id, externalClassname, isActive }) => {
     const restaurant = useSelector((state) => selectRestaurantById(state, id));
 
     if (!restaurant) {
@@ -12,15 +14,12 @@ export const TabRestaurantContainer = ({ id, externalClassname, onClick, isActiv
     const { name } = restaurant;
 
     return (
-        <CommonButton
-            key={id}
-            sizeVariant="navSelectorSize"
-            colorVariant="navSelectorColor"
+        <TabNavLink
             isActive={isActive}
-            onClick={onClick}
             externalClassname={externalClassname}
+            to={id}
         >
             {name}
-        </CommonButton>
+        </TabNavLink>
     );
 };
