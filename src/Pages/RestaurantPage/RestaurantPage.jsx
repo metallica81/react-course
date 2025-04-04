@@ -8,17 +8,24 @@ import { getRestaurants } from "../../Redux/Entities/Restaurant/getRestaurant";
 export function RestaurantPage() {
     const { restaurantId } = useParams();
 
-    const requestStatus = useRequest(getRestaurants);
-    console.log('requestStatus', requestStatus)
+    const requestStatus = useRequest(getRestaurants, restaurantId);
 
     const restaurantIds = useSelector(selectRestaurantIds);
-    const restaurantInfo = useSelector((state) => selectRestaurantById(state, restaurantId));
-    console.log('restaurantInfo', restaurantInfo)
 
-    return (
-        <>
-            <RestaurantContainer key={restaurantId} id={restaurantId} />
-            <Outlet context={{ restaurantId }} />
-        </>
-    );
+    if (restaurantIds) {
+        return (
+            <>
+                <RestaurantContainer key={restaurantId} id={restaurantId} />
+                <Outlet context={{ restaurantId }} />
+            </>
+        );
+    }
+    
+    if (requestStatus === "idle" || requestStatus === "pending") {
+        return "loading...";
+    }
+
+    if (requestStatus === "rejected") {
+        return "error";
+    }
 }

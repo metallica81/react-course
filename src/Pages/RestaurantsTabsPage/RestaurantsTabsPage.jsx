@@ -9,7 +9,6 @@ import { useRestaurantPage } from "./useRestruantPage.js";
 
 export const RestaurantsTabsPage = () => {
     const requestStatus = useRequest(getRestaurants);
-    // console.log('requestStatus', requestStatus)
     const restaurantIds = useSelector(selectRestaurantIds);
 
     const { activeRestaurantId, handleChooseRestaurant } =
