@@ -15,12 +15,12 @@ export function RestaurantReviewsPage() {
     );
 
     if (requestStatus === IDLE || requestStatus === PENDING) {
-        return 'loading...';
-      }
-    
-      if (requestStatus === REJECTED) {
-        return 'error';
-      }
+        return "loading...";
+    }
+
+    if (requestStatus === REJECTED) {
+        return "error";
+    }
 
     return (
         <>
