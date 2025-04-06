@@ -4,7 +4,6 @@ import { userSlice } from "./Entities/User/slice";
 import { reviewSlice } from "./Entities/Review/slice";
 import { dishSlice } from "./Entities/Dish/slice";
 import { cartSlice } from "./Entities/Cart/slice";
-import { requestSlice } from "./entities/request/slice";
 import { api } from "./Services/api";
 
 export const store = configureStore({
@@ -14,7 +13,6 @@ export const store = configureStore({
         [reviewSlice.name]: reviewSlice.reducer,
         [dishSlice.name]: dishSlice.reducer,
         [cartSlice.name]: cartSlice.reducer,
-        [requestSlice.name]: requestSlice.reducer,
         [api.reducerPath]: api.reducer
     },
     middleware: (getDefaultMiddleware) =>
