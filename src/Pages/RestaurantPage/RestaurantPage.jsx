@@ -4,10 +4,13 @@ import { RestaurantContainer } from "../../components/Restaurant/RestaurantConta
 export function RestaurantPage() {
     const { restaurantId } = useParams();
 
-    return (
-        <>
-            <RestaurantContainer key={restaurantId} id={restaurantId} />
-            <Outlet context={{ restaurantId }}/>
-        </>
-    );
+    if (restaurantId) {
+        return (
+            <>
+                <RestaurantContainer key={restaurantId} id={restaurantId} />
+                <Outlet context={{ restaurantId }} />
+            </>
+        );
+    }
+    
 }
