@@ -1,32 +1,34 @@
 import { DishListItem } from "../../components/Menu/DishListItem";
-import { useSelector } from "react-redux";
 import { useOutletContext } from "react-router";
-import { selectRestaurantById } from "../../Redux/Entities/Restaurant/slice";
-import { IDLE, PENDING, REJECTED } from "../../Redux/consts";
-import { useRequest } from "../../Redux/Hooks/useRequest";
-import { getDishes } from "../../Redux/Entities/Dish/getDishes";
+import { useGetMenuQuery } from "../../Redux/Services/api";
 
 export function RestaurantMenuPage() {
     const { restaurantId } = useOutletContext();
-    const requestStatus = useRequest(getDishes, restaurantId);
-    const restaurantDishIds = useSelector((state) =>
-        selectRestaurantById(state, restaurantId)
-    );
+    const {
+        isError,
+        isLoading,
+        data: restaurantDishList,
+    } = useGetMenuQuery(restaurantId);
+    console.log("restaurantDishList", restaurantDishList);
 
-    if (requestStatus === IDLE || requestStatus === PENDING) {
-        return 'loading...';
-      }
-    
-      if (requestStatus === REJECTED) {
-        return 'error';
-      }
+    if (isLoading) {
+        return "loading...";
+    }
+
+    if (isError) {
+        return "error";
+    }
 
     return (
         <>
             <h3>Меню</h3>
             <ul>
-                {restaurantDishIds.menu.map((dishId) => (
-                    <DishListItem key={dishId} dishId={dishId} />
+                {restaurantDishList.map((dish) => (
+                    <DishListItem
+                        key={dish.id}
+                        dishId={dish.id}
+                        name={dish.name}
+                    />
                 ))}
             </ul>
         </>

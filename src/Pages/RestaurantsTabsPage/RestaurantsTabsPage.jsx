@@ -1,20 +1,17 @@
 import styles from "./Pages.module.scss";
-import { useSelector } from "react-redux";
-import { selectRestaurantIds } from "../../Redux/Entities/Restaurant/slice.js";
-import { TabRestaurantContainer } from "../../components/TabRestorauntContainer/TabRestaurantContainer.jsx";
 import { Outlet } from "react-router";
-import { getRestaurants } from "../../Redux/Entities/Restaurant/getRestaurant.js";
-import { useRequest } from "../../Redux/Hooks/useRequest.js";
 import { useRestaurantPage } from "./useRestruantPage.js";
 import { useGetRestaurantsQuery } from "../../Redux/Services/api.js";
+import { TabNavLink } from "../../components/TabRestorauntContainer/TabNavLink.jsx";
 
 export const RestaurantsTabsPage = () => {
-    const requestStatus = useRequest(getRestaurants);
-    const restaurantIds = useSelector(selectRestaurantIds);
-    console.log(useGetRestaurantsQuery())
+    const { status: requestStatus, data: restaurants = [] } = useGetRestaurantsQuery();
+    console.log(restaurants)
+    const restaurantIds = restaurants?.map(restaurant => restaurant.id);
 
     const { activeRestaurantId, handleChooseRestaurant } =
         useRestaurantPage(restaurantIds);
+    console.log(activeRestaurantId)
 
     if (requestStatus === "idle" || requestStatus === "pending") {
         return "loading...";
@@ -27,14 +24,17 @@ export const RestaurantsTabsPage = () => {
     return (
         <div className={styles.wrapper}>
             <nav className={styles.nav}>
-                {restaurantIds.map((id) => (
-                    <TabRestaurantContainer
-                        key={id}
-                        id={id}
+                {restaurants.map((restaurant) => (
+                    <TabNavLink
+                        to={restaurant.id}
+                        key={restaurant.id}
+                        id={restaurant.id}
                         externalClassname={styles.settingsForButton}
-                        onClick={() => handleChooseRestaurant(id)}
-                        isActive={id === activeRestaurantId}
-                    />
+                        onClick={() => handleChooseRestaurant(restaurant.id)}
+                        isActive={restaurant.id === activeRestaurantId}
+                    >
+                        {restaurant.name}
+                    </TabNavLink>
                 ))}
             </nav>
             <Outlet />

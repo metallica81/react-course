@@ -1,29 +1,24 @@
-import { useSelector } from "react-redux"
-import { selectDishById } from "../../Redux/Entities/Dish/slice"
 import { DishCounter } from "./DishCounter/DishCounter";
-import { useRequest } from "../../Redux/Hooks/useRequest";
-import { getDish } from "../../Redux/Entities/Dish/getDish";
-import { IDLE, PENDING, REJECTED } from "../../Redux/consts";
 import styles from "./Menu.module.scss";
+import { useGetDishByIdQuery } from "../../Redux/Services/api";
 
 export function Dish({ dishId }) {
-    const requestStatus = useRequest(getDish, dishId);
-    const { name } = useSelector((state) => selectDishById(state, dishId))
-    if (name) {
-        return (
-            <div className={styles.dishCounterDiv}>
-                <p>{name}</p>
-                <DishCounter dishId={dishId} />
-            </div>
-        )
+    const { isError, isLoading, data: dish } = useGetDishByIdQuery(dishId);
+    console.log(useGetDishByIdQuery(dishId));
+    if (isError) {
+        return "error";
     }
     
+    if (isLoading) {
+        return "loading";
+    }
 
-    if (requestStatus === IDLE || requestStatus === PENDING) {
-        return 'loading...';
-      }
-    
-      if (requestStatus === REJECTED) {
-        return 'error';
-      }
+    if (dish.name) {
+        return (
+            <div className={styles.dishCounterDiv}>
+                <p>{dish.name}</p>
+                <DishCounter dishId={dishId} />
+            </div>
+        );
+    }
 }
