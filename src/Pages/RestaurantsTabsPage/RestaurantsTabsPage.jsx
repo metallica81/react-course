@@ -6,10 +6,12 @@ import { Outlet } from "react-router";
 import { getRestaurants } from "../../Redux/Entities/Restaurant/getRestaurant.js";
 import { useRequest } from "../../Redux/Hooks/useRequest.js";
 import { useRestaurantPage } from "./useRestruantPage.js";
+import { useGetRestaurantsQuery } from "../../Redux/Services/api.js";
 
 export const RestaurantsTabsPage = () => {
     const requestStatus = useRequest(getRestaurants);
     const restaurantIds = useSelector(selectRestaurantIds);
+    console.log(useGetRestaurantsQuery())
 
     const { activeRestaurantId, handleChooseRestaurant } =
         useRestaurantPage(restaurantIds);
