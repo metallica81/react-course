@@ -20,9 +20,8 @@ export const api = createApi({
     getUsers: builder.query({
       query: () => "/users",
     }),
-    getReviewsByRestaurantId: builder.query({
-      query: (restaurantId) => `/reviews?productId=${restaurantId}`,
-      providesTags: [{ type: "reviews", id: "all" }],
+    getReviewsById: builder.query({
+      query: (restaurantId) => `/reviews?restaurantId=${restaurantId}`,
     }),
     addReview: builder.mutation({
       query: ({ restaurantId, review }) => ({
@@ -42,6 +41,6 @@ export const {
   useLazyGetRestaurantsQuery,
   useGetUsersQuery,
   useGetRestaurantByIdQuery,
-  useGetReviewsByRestaurantIdQuery,
+  useGetReviewsByIdQuery,
   useAddReviewMutation,
 } = api;

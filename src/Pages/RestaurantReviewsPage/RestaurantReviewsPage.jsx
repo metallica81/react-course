@@ -1,34 +1,29 @@
 import { ReviewListItem } from "../../components/Reviews/ReviewListItem";
-import { useSelector } from "react-redux";
 import { useOutletContext } from "react-router";
-import { selectRestaurantById } from "../../Redux/Entities/Restaurant/slice";
-import { getReviews } from "../../Redux/Entities/Review/getReviews";
-import { useRequest } from "../../Redux/Hooks/useRequest";
-import { IDLE, PENDING, REJECTED } from "../../Redux/consts";
+import { useGetReviewsByIdQuery } from "../../Redux/Services/api";
 
 export function RestaurantReviewsPage() {
     const { restaurantId } = useOutletContext();
 
-    const requestStatus = useRequest(getReviews, restaurantId);
-    const { reviews } = useSelector((state) =>
-        selectRestaurantById(state, restaurantId)
-    );
-
-    if (requestStatus === IDLE || requestStatus === PENDING) {
-        return "loading...";
-    }
-
-    if (requestStatus === REJECTED) {
+    const { isLoading, isError, data: reviews } = useGetReviewsByIdQuery(restaurantId);
+    console.log('reviews', reviews)
+    if (isError) {
         return "error";
     }
+
+    if (isLoading) {
+        return "loading...";
+    } 
 
     return (
         <>
             <h3>Отзывы</h3>
             <ul>
-                {reviews.map((reviewsId) => {
+                {reviews.map((review) => {
                     return (
-                        <ReviewListItem key={reviewsId} reviewsId={reviewsId} />
+                        Boolean(review.text) && (
+                            <li key={review.id}>{review.text}</li>
+                        )
                     );
                 })}
             </ul>
