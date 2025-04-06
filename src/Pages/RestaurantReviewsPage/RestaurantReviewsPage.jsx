@@ -1,4 +1,3 @@
-import { ReviewListItem } from "../../components/Reviews/ReviewListItem";
 import { useOutletContext } from "react-router";
 import { useGetReviewsByIdQuery } from "../../Redux/Services/api";
 

@@ -28,8 +28,7 @@ export const api = createApi({
         url: `/review/${restaurantId}`,
         body: review,
         method: "POST",
-      }),
-      invalidatesTags: [{ type: "reviews", id: "all" }],
+      })
     }),
   }),
 });

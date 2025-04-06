@@ -6,7 +6,7 @@ import styles from "./Form.module.scss";
 import { use } from "react";
 import { UserContext } from "../UserContext";
 
-export function Form() {
+export function Form({ onSubmit, isSubmitButtonDisabled }) {
     const {
         setName,
         setText,
@@ -17,7 +17,7 @@ export function Form() {
         form,
     } = useFormReducer();
 
-    const { name, text, rating, count } = form;
+    const { userName, text, rating, count } = form;
 
     const { isAuth } = use(UserContext);
 
@@ -30,7 +30,7 @@ export function Form() {
                 type="text"
                 style={{ width: "300px" }}
                 placeholder="Имя"
-                value={name}
+                value={userName}
                 onChange={(e) => setName(e.target.value)}
             />
             <textarea
@@ -69,6 +69,13 @@ export function Form() {
                 externalClassname={styles.commonButton}
             >
                 Clear
+            </CommonButton>
+            <CommonButton
+                disabled={isSubmitButtonDisabled}
+                onClick={() => onSubmit({text, rating, user: "everyName"})}
+                externalClassname={styles.commonButton}
+            >
+                Submit
             </CommonButton>
         </form>
     );
