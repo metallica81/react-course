@@ -9,7 +9,6 @@ export function RestaurantMenuPage() {
         isLoading,
         data: restaurantDishList,
     } = useGetMenuQuery(restaurantId);
-    console.log("restaurantDishList", restaurantDishList);
 
     if (isLoading) {
         return "loading...";

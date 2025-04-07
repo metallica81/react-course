@@ -19,7 +19,7 @@ export function Form({ onSubmit, isSubmitButtonDisabled }) {
 
     const { name, text, rating, count } = form;
 
-    const { isAuth } = use(UserContext);
+    const { isAuth, userId } = use(UserContext);
 
     return (
         <form
@@ -70,14 +70,14 @@ export function Form({ onSubmit, isSubmitButtonDisabled }) {
             >
                 Clear
             </CommonButton>
-            {console.log(text, rating)}
-            <CommonButton
+            
+            {!!isAuth && <CommonButton
                 disabled={isSubmitButtonDisabled}
-                onClick={() => onSubmit({text, rating, user: name})}
+                onClick={() => onSubmit({text, rating, userId: userId})}
                 externalClassname={styles.commonButton}
             >
                 Submit
-            </CommonButton>
+            </CommonButton>}
         </form>
     );
 }

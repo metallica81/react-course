@@ -14,8 +14,10 @@ export const UserContext = ({ children }) => {
         }
     };
 
+    const userId = 'oVEA4kQjDcG5dfasfasdfasfsdfsafsad';
+
     return (
-        <UserContextProvider value={{ isAuth, toggleStatus, userName }}>
+        <UserContextProvider value={{ isAuth, toggleStatus, userName, userId }}>
             {children}
         </UserContextProvider>
     );
