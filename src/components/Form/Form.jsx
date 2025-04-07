@@ -17,7 +17,7 @@ export function Form({ onSubmit, isSubmitButtonDisabled }) {
         form,
     } = useFormReducer();
 
-    const { userName, text, rating, count } = form;
+    const { name, text, rating, count } = form;
 
     const { isAuth } = use(UserContext);
 
@@ -30,7 +30,7 @@ export function Form({ onSubmit, isSubmitButtonDisabled }) {
                 type="text"
                 style={{ width: "300px" }}
                 placeholder="Имя"
-                value={userName}
+                value={name}
                 onChange={(e) => setName(e.target.value)}
             />
             <textarea
@@ -70,9 +70,10 @@ export function Form({ onSubmit, isSubmitButtonDisabled }) {
             >
                 Clear
             </CommonButton>
+            {console.log(text, rating)}
             <CommonButton
                 disabled={isSubmitButtonDisabled}
-                onClick={() => onSubmit({text, rating, user: "everyName"})}
+                onClick={() => onSubmit({text, rating, user: name})}
                 externalClassname={styles.commonButton}
             >
                 Submit

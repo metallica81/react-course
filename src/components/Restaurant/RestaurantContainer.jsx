@@ -14,9 +14,8 @@ export const RestaurantContainer = ({ id }) => {
 
     const [addReview, { isLoading: isAddLoadingReview }] = useAddReviewMutation();
 
-
-    const handleSubmit = () => {
-        addReview(body);
+    const handleSubmit = (review) => {
+        addReview({ restaurantId: id , review});
     };
     if (isError) {
         return "error";

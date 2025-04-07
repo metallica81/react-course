@@ -22,13 +22,15 @@ export const api = createApi({
     }),
     getReviewsById: builder.query({
       query: (restaurantId) => `/reviews?restaurantId=${restaurantId}`,
+      providesTags: [{ type: "reviews", id: "all" }],
     }),
     addReview: builder.mutation({
       query: ({ restaurantId, review }) => ({
         url: `/review/${restaurantId}`,
         body: review,
         method: "POST",
-      })
+      }),
+      invalidatesTags: [{ type: "reviews", id: "all" }],
     }),
   }),
 });

@@ -1,7 +1,7 @@
 import { useCallback, useReducer } from "react";
 
 const DEFAULT_FORM = {
-    userName: "",
+    name: "",
     text: "",
     rating: null,
     count: 0,
