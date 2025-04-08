@@ -25,7 +25,7 @@ export const api = createApi({
             providesTags: [{ type: "reviews", id: "all" }],
         }),
         getReviewByUserId: builder.query({
-            query: () => `/reviews`, // получаем все
+            query: () => `/reviews`, 
             transformResponse: (reviews, meta, arg) => {
                 return reviews.find((review) => review.userId === arg);
             },
@@ -40,8 +40,8 @@ export const api = createApi({
             invalidatesTags: [{ type: "reviews", id: "all" }],
         }),
         changeReview: builder.mutation({
-            query: ({ restaurantId, review }) => ({
-                url: `/review/${restaurantId}`,
+            query: ({ review }) => ({
+                url: `/review/${review.id}`,
                 body: review,
                 method: "PATCH",
             }),

@@ -8,6 +8,7 @@ export const Restaurant = ({
     externalClassname,
     onSubmit,
     isSubmitButtonDisabled,
+    handleButtonText,
 }) => {
     return (
         <section className={styles.section}>
@@ -16,7 +17,11 @@ export const Restaurant = ({
                 <TabLink to="menu">Menu</TabLink>
                 <TabLink to="reviews">Reviews</TabLink>
             </div>
-            <Form onSubmit={onSubmit} isSubmitButtonDisabled={isSubmitButtonDisabled} />
+            <Form
+                onSubmit={onSubmit}
+                isSubmitButtonDisabled={isSubmitButtonDisabled}
+                handleButtonText={handleButtonText}
+            />
         </section>
     );
 };

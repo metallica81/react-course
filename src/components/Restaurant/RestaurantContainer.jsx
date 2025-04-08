@@ -24,13 +24,12 @@ export const RestaurantContainer = ({ id }) => {
     } = useGetReviewByUserIdQuery(userId);
 
     if (isErrorGetReviewByUserId) {
-        'ErrorGetReviewByUserId';
+        ("ErrorGetReviewByUserId");
     }
 
     if (isLoadingGetReviewByUserId) {
-        'isLoadingGetReviewByUserId';
+        ("isLoadingGetReviewByUserId");
     }
-    console.log('reviewByUserId.userId', reviewByUserId)
 
     const [addReview, { isLoading: isAddLoadingReview }] =
         useAddReviewMutation();
@@ -38,14 +37,19 @@ export const RestaurantContainer = ({ id }) => {
         useChangeReviewMutation();
 
     const handleSubmit = (review) => {
-        console.log("reviewByUserId", !!reviewByUserId);
-        const updatedReview = {
-            ...review
-        };
-        return reviewByUserId?.userId != undefined
-            ? changeReview({ restaurantId: id, review: updatedReview })
+        return reviewByUserId?.id
+            ? changeReview({
+                  restaurantId: id,
+                  review: { ...review, id: reviewByUserId.id }, 
+              })
             : addReview({ restaurantId: id, review });
     };
+
+    const handleButtonText = () => {
+        return reviewByUserId?.id
+            ? "Change"
+            : "Submit"
+    }
 
     const isLoadingReview = () => isAddLoadingReview || isChangeReviewLoading;
 
@@ -69,6 +73,7 @@ export const RestaurantContainer = ({ id }) => {
             externalClassname={styles.externalClassname}
             onSubmit={handleSubmit}
             isSubmitButtonDisabled={isLoadingReview}
+            handleButtonText={handleButtonText}
         />
     );
 };

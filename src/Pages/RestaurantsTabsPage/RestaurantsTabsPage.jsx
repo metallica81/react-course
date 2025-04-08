@@ -6,12 +6,10 @@ import { TabNavLink } from "../../components/TabRestorauntContainer/TabNavLink.j
 
 export const RestaurantsTabsPage = () => {
     const { status: requestStatus, data: restaurants = [] } = useGetRestaurantsQuery();
-    console.log(restaurants)
     const restaurantIds = restaurants?.map(restaurant => restaurant.id);
 
     const { activeRestaurantId, handleChooseRestaurant } =
         useRestaurantPage(restaurantIds);
-    console.log(activeRestaurantId)
 
     if (requestStatus === "idle" || requestStatus === "pending") {
         return "loading...";
