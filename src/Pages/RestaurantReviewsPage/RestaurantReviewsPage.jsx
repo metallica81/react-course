@@ -5,7 +5,6 @@ export function RestaurantReviewsPage() {
     const { restaurantId } = useOutletContext();
 
     const { isLoading, isError, data: reviews } = useGetReviewsByIdQuery(restaurantId);
-    console.log('reviews', reviews)
     if (isError) {
         return "error";
     }
@@ -18,10 +17,10 @@ export function RestaurantReviewsPage() {
         <>
             <h3>Отзывы</h3>
             <ul>
-                {reviews.map((review) => {
+                {reviews.map(({id, text}) => {
                     return (
-                        Boolean(review.text) && (
-                            <li key={review.id}>{review.text}</li>
+                        Boolean(text) && (
+                            <li key={id}>{text}</li>
                         )
                     );
                 })}

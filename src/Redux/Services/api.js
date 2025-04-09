@@ -24,11 +24,8 @@ export const api = createApi({
             query: (restaurantId) => `/reviews?restaurantId=${restaurantId}`,
             providesTags: [{ type: "reviews", id: "all" }],
         }),
-        getReviewByUserId: builder.query({
-            query: () => `/reviews`, 
-            transformResponse: (reviews, meta, arg) => {
-                return reviews.find((review) => review.userId === arg);
-            },
+        getReviewsByRestaurant: builder.query({
+            query: (restaurantId) => `/reviews?restaurantId=${restaurantId}`,
             providesTags: [{ type: "reviews", id: "all" }],
         }),
         addReview: builder.mutation({
@@ -51,7 +48,7 @@ export const api = createApi({
 });
 
 export const {
-    useGetReviewByUserIdQuery,
+    useGetReviewsByRestaurantQuery,
     useGetDishByIdQuery,
     useGetMenuQuery,
     useGetRestaurantsQuery,

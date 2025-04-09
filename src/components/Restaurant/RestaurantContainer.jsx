@@ -3,11 +3,9 @@ import {
     useAddReviewMutation,
     useGetRestaurantByIdQuery,
     useChangeReviewMutation,
-    useGetReviewByUserIdQuery,
 } from "../../Redux/Services/api";
 import styles from "./RestaurantContainer.module.scss";
-import { use } from "react";
-import { UserContext } from "../UserContext";
+import { ReviewChanging } from "../Reviews/ReviewChanging";
 
 export const RestaurantContainer = ({ id }) => {
     const {
@@ -16,41 +14,15 @@ export const RestaurantContainer = ({ id }) => {
         data: restaurant,
     } = useGetRestaurantByIdQuery(id);
 
-    const { userId } = use(UserContext);
-    const {
-        isError: isErrorGetReviewByUserId,
-        isLoading: isLoadingGetReviewByUserId,
-        data: reviewByUserId,
-    } = useGetReviewByUserIdQuery(userId);
-
-    if (isErrorGetReviewByUserId) {
-        ("ErrorGetReviewByUserId");
-    }
-
-    if (isLoadingGetReviewByUserId) {
-        ("isLoadingGetReviewByUserId");
-    }
-
     const [addReview, { isLoading: isAddLoadingReview }] =
         useAddReviewMutation();
+
     const [changeReview, { isLoading: isChangeReviewLoading }] =
         useChangeReviewMutation();
 
-    const handleSubmit = (review) => {
-        return reviewByUserId?.id
-            ? changeReview({
-                  restaurantId: id,
-                  review: { ...review, id: reviewByUserId.id }, 
-              })
-            : addReview({ restaurantId: id, review });
-    };
-
-    const handleButtonText = () => {
-        return reviewByUserId?.id
-            ? "Change"
-            : "Submit"
-    }
-
+    // вынес логику связанную с изменением отзыва в отельный компонент
+    const { handleButtonText, handleSubmit } = ReviewChanging(changeReview, addReview, id) 
+    
     const isLoadingReview = () => isAddLoadingReview || isChangeReviewLoading;
 
     if (isError) {

@@ -76,7 +76,7 @@ export function Form({ onSubmit, isSubmitButtonDisabled, handleButtonText }) {
                 onClick={() => onSubmit({text, rating, userId: userId})}
                 externalClassname={styles.commonButton}
             >
-                {handleButtonText()}
+                {handleButtonText}
             </CommonButton>}
         </form>
     );

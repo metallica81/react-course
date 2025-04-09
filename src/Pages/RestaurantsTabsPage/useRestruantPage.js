@@ -1,8 +1,9 @@
 import { useState, useEffect } from "react";
 
 export const useRestaurantPage = (restaurantIds) => {
-    
-    const [activeRestaurantId, setActiveRestaurantId] = useState(restaurantIds[0]);
+    const [activeRestaurantId, setActiveRestaurantId] = useState(
+        restaurantIds[0]
+    );
 
     useEffect(() => {
         if (restaurantIds.length > 0 && !activeRestaurantId) {

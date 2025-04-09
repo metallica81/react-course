@@ -1,5 +1,4 @@
 import styles from "./Restaurant.module.scss";
-import { Link } from "react-router";
 import { Form } from "../Form/Form";
 import { TabLink } from "../TabRestorauntContainer/TabLink";
 

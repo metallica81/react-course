@@ -4,7 +4,6 @@ import { useGetDishByIdQuery } from "../../Redux/Services/api";
 
 export function Dish({ dishId }) {
     const { isError, isLoading, data: dish } = useGetDishByIdQuery(dishId);
-    console.log(useGetDishByIdQuery(dishId));
     if (isError) {
         return "error";
     }

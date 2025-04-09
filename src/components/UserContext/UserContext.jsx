@@ -14,7 +14,11 @@ export const UserContext = ({ children }) => {
         }
     };
 
-    const userId = 'oVEA4kQjDcG5dfasfasdfsfasfasfas';
+    let userId = null;
+
+    if (isAuth) {
+        userId = 'oVEA4kQjDcG5dfasfasdfsfasfasfas';
+    }
 
     return (
         <UserContextProvider value={{ isAuth, toggleStatus, userName, userId }}>
