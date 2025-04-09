@@ -11,6 +11,7 @@ import { Navigate } from "react-router";
 import { RestaurantMenuPage } from "../../Pages/RestaurantMenuPage/RestaurantMenuPage";
 import { RestaurantReviewsPage } from "../../Pages/RestaurantReviewsPage/RestaurantReviewsPage";
 import { DishPage } from "../../Pages/DishPage/DishPage";
+import '../../index.css'
 
 export const App = () => {
     return (
@@ -61,3 +62,5 @@ export const App = () => {
         </Provider>
     );
 };
+
+export default App;
