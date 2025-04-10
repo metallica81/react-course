@@ -1,3 +1,5 @@
+import "../index.css";
+
 export const metadata = {
     title: "next app",
     description: "restaurant app",

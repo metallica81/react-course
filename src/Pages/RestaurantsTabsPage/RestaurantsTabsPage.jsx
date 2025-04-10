@@ -1,3 +1,5 @@
+"use client";
+
 import styles from "./Pages.module.scss";
 import { Outlet } from "react-router";
 import { useRestaurantPage } from "./useRestruantPage.js";

@@ -11,17 +11,20 @@ import { Navigate } from "react-router";
 import { RestaurantMenuPage } from "../../Pages/RestaurantMenuPage/RestaurantMenuPage";
 import { RestaurantReviewsPage } from "../../Pages/RestaurantReviewsPage/RestaurantReviewsPage";
 import { DishPage } from "../../Pages/DishPage/DishPage";
-import '../../index.css'
+import "../../index.css";
 
-export const App = ({children}) => {
+export const App = () => {
     return (
         <Provider store={store}>
             <UserContext>
                 <ThemeContext>
-                    {children}
-                    {/* <BrowserRouter>
+                    <BrowserRouter>
                         <Routes>
                             <Route element={<Layout />}>
+                                <Route
+                                    index
+                                    element={<HomePage />}
+                                />
                                 <Route
                                     path="/restaurants"
                                     element={<RestaurantsTabsPage />}
@@ -56,7 +59,7 @@ export const App = ({children}) => {
                                 element={<Navigate to="/" replace />}
                             />
                         </Routes>
-                    </BrowserRouter> */}
+                    </BrowserRouter>
                 </ThemeContext>
             </UserContext>
         </Provider>
