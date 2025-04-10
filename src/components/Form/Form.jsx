@@ -6,7 +6,7 @@ import styles from "./Form.module.scss";
 import { use } from "react";
 import { UserContext } from "../UserContext";
 
-export function Form() {
+export function Form({ onSubmit, isSubmitButtonDisabled, handleButtonText }) {
     const {
         setName,
         setText,
@@ -19,7 +19,7 @@ export function Form() {
 
     const { name, text, rating, count } = form;
 
-    const { isAuth } = use(UserContext);
+    const { isAuth, userId } = use(UserContext);
 
     return (
         <form
@@ -70,6 +70,14 @@ export function Form() {
             >
                 Clear
             </CommonButton>
+            
+            {!!isAuth && <CommonButton
+                disabled={isSubmitButtonDisabled}
+                onClick={() => onSubmit({text, rating, userId: userId})}
+                externalClassname={styles.commonButton}
+            >
+                {handleButtonText}
+            </CommonButton>}
         </form>
     );
 }

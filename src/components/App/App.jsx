@@ -11,6 +11,7 @@ import { Navigate } from "react-router";
 import { RestaurantMenuPage } from "../../Pages/RestaurantMenuPage/RestaurantMenuPage";
 import { RestaurantReviewsPage } from "../../Pages/RestaurantReviewsPage/RestaurantReviewsPage";
 import { DishPage } from "../../Pages/DishPage/DishPage";
+import "../../index.css";
 
 export const App = () => {
     return (
@@ -20,7 +21,10 @@ export const App = () => {
                     <BrowserRouter>
                         <Routes>
                             <Route element={<Layout />}>
-                                <Route index element={<HomePage />} />
+                                <Route
+                                    index
+                                    element={<HomePage />}
+                                />
                                 <Route
                                     path="/restaurants"
                                     element={<RestaurantsTabsPage />}
@@ -61,3 +65,5 @@ export const App = () => {
         </Provider>
     );
 };
+
+export default App;

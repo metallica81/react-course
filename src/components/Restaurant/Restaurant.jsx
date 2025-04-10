@@ -1,20 +1,26 @@
-import styles from './Restaurant.module.scss';
-import { Link } from "react-router";
+import styles from "./Restaurant.module.scss";
 import { Form } from "../Form/Form";
-import { TabLink } from '../TabRestorauntContainer/TabLink';
+import { TabLink } from "../TabRestorauntContainer/TabLink";
 
-export const Restaurant = ({ name, externalClassname }) => {
-
+export const Restaurant = ({
+    name,
+    externalClassname,
+    onSubmit,
+    isSubmitButtonDisabled,
+    handleButtonText,
+}) => {
     return (
-        <section
-            className={styles.section}
-        >
+        <section className={styles.section}>
             <h2>{name}</h2>
             <div className={externalClassname}>
                 <TabLink to="menu">Menu</TabLink>
                 <TabLink to="reviews">Reviews</TabLink>
             </div>
-            <Form />
+            <Form
+                onSubmit={onSubmit}
+                isSubmitButtonDisabled={isSubmitButtonDisabled}
+                handleButtonText={handleButtonText}
+            />
         </section>
     );
 };

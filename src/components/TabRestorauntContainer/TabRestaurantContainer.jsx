@@ -1,7 +1,5 @@
 import { useSelector } from "react-redux";
 import { selectRestaurantById } from "../../Redux/Entities/Restaurant/slice";
-import { CommonButton } from "../CommonButton/CommonButton";
-import { NavLink } from "react-router";
 import { TabNavLink } from "./TabNavLink";
 
 export const TabRestaurantContainer = ({ id, externalClassname, isActive }) => {

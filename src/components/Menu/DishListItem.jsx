@@ -1,19 +1,15 @@
-import { DishCounter } from "./DishCounter/DishCounter";
 import styles from "./Menu.module.scss";
-import { useSelector } from "react-redux";
-import { selectDishById } from "../../Redux/Entities/Dish/slice";
 import { Link } from "react-router";
 
-export function DishListItem({ dishId }) {
-    const dish = useSelector((state) => selectDishById(state, dishId));
+export function DishListItem({ name, dishId }) {
 
-    if (!dish) {
+    if (!dishId) {
         return null
     }
 
     return (
         <li className={styles.root}>
-            <Link to={`/dish/${dishId}`}>{dish.name}</Link>
+            <Link to={`/dish/${dishId}`}>{name}</Link>
         </li>
     );
 }
