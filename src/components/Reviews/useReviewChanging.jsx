@@ -1,12 +1,12 @@
 import { use } from "react";
 import { UserContext } from "../UserContext";
-import { useGetReviewsByRestaurantQuery } from "../../Redux/Services/api";
+import { useGetReviewsByIdQuery } from "../../Redux/Services/api";
 
-export const ReviewChanging = (changeReview, addReview, id) => {
+export const useReviewChanging = (changeReview, addReview, id) => {
     const { userId } = use(UserContext);
 
     // в этом месте я ищу отзыва текущего пользователя
-    const { data: reviews, isLoading, error } = useGetReviewsByRestaurantQuery(id);
+    const { data: reviews, isLoading, error } = useGetReviewsByIdQuery(id);
 
     const reviewByUserId = reviews?.find(review => review.userId === userId);
 

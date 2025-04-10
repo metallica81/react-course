@@ -5,7 +5,7 @@ import {
     useChangeReviewMutation,
 } from "../../Redux/Services/api";
 import styles from "./RestaurantContainer.module.scss";
-import { ReviewChanging } from "../Reviews/ReviewChanging";
+import { useReviewChanging } from "../Reviews/useReviewChanging";
 
 export const RestaurantContainer = ({ id }) => {
     const {
@@ -21,7 +21,7 @@ export const RestaurantContainer = ({ id }) => {
         useChangeReviewMutation();
 
     // вынес логику связанную с изменением отзыва в отельный компонент
-    const { handleButtonText, handleSubmit } = ReviewChanging(changeReview, addReview, id) 
+    const { handleButtonText, handleSubmit } = useReviewChanging(changeReview, addReview, id) 
     
     const isLoadingReview = () => isAddLoadingReview || isChangeReviewLoading;
 
