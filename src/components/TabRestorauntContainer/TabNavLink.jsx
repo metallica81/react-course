@@ -1,18 +1,17 @@
-// import Link from "next/link";
-import { NavLink } from "react-router";
+import Link from "next/link";
 import styles from "./TabLink.module.scss";
 import classNames from "classnames";
 
 export function TabNavLink({ externalClassname, to, children, isActive, onClick }) {
     return (
-        <NavLink
+        <Link
             className={classNames(externalClassname, styles.tabLink, {
                 [styles.isActive]: !!isActive,
             })}
-            to={to}
+            href={`restaurants/${to}`}
             onClick={onClick}
         >
             {children}
-        </NavLink>
+        </Link>
     );
 }

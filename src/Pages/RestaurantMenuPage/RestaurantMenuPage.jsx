@@ -1,9 +1,9 @@
+"use client"
+
 import { DishListItem } from "../../components/Menu/DishListItem";
-import { useOutletContext } from "react-router";
 import { useGetMenuQuery } from "../../Redux/Services/api";
 
-export function RestaurantMenuPage() {
-    const { restaurantId } = useOutletContext();
+export function RestaurantMenuPage({restaurantId}) {
     const {
         isError,
         isLoading,

@@ -1,9 +1,8 @@
-import { useOutletContext } from "react-router";
+"use client"
+
 import { useGetReviewsByIdQuery } from "../../Redux/Services/api";
 
-export function RestaurantReviewsPage() {
-    const { restaurantId } = useOutletContext();
-
+export function RestaurantReviewsPage({restaurantId}) {
     const { isLoading, isError, data: reviews } = useGetReviewsByIdQuery(restaurantId);
     if (isError) {
         return "error";

@@ -1,3 +1,5 @@
+"use client"
+
 import { Provider } from "react-redux";
 import { store } from "../../Redux/store";
 import { Layout } from "../Layout/Layout";
@@ -13,12 +15,13 @@ import { RestaurantReviewsPage } from "../../Pages/RestaurantReviewsPage/Restaur
 import { DishPage } from "../../Pages/DishPage/DishPage";
 import "../../index.css";
 
-export const App = () => {
+export const App = ({children}) => {
     return (
         <Provider store={store}>
             <UserContext>
                 <ThemeContext>
-                    <BrowserRouter>
+                    {children}
+                    {/* <BrowserRouter>
                         <Routes>
                             <Route element={<Layout />}>
                                 <Route
@@ -59,7 +62,7 @@ export const App = () => {
                                 element={<Navigate to="/" replace />}
                             />
                         </Routes>
-                    </BrowserRouter>
+                    </BrowserRouter> */}
                 </ThemeContext>
             </UserContext>
         </Provider>

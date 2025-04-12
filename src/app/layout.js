@@ -1,4 +1,6 @@
 import "../index.css";
+import { App } from "../components/App/App";
+import { Layout } from "../components/Layout/Layout";
 
 export const metadata = {
     title: "next app",
@@ -12,8 +14,11 @@ export const RootLayout = ({ children }) => {
                 <link rel="icon" type="image/svg+xml" href="/vite.svg" />
             </head>
             <body>
-                <div id="root">{children}</div>
-                <script type="module" src="/src/main.jsx"></script>
+                <App>
+                    <Layout>
+                        {children}
+                    </Layout>
+                </App>
             </body>
         </html>
     );
