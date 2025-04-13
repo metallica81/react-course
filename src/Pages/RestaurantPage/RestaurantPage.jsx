@@ -1,6 +1,6 @@
 import { RestaurantContainer } from "../../components/Restaurant/RestaurantContainer";
 
-export function RestaurantPage({ children, restaurantId }) {
+export function RestaurantPageWrapper({ children, restaurantId }) {
 
     if (restaurantId) {
         return (

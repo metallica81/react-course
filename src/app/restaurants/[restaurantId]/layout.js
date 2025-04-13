@@ -1,10 +1,10 @@
-import { RestaurantPage } from "../../../Pages/RestaurantPage/RestaurantPage";
+import { RestaurantPageWrapper } from "../../../Pages/RestaurantPage/RestaurantPage";
 
 const RestaurantLayout = async ({ children, params }) => {
     const { restaurantId } = await params;
     return (
-      <RestaurantPage restaurantId={restaurantId}>{children}</RestaurantPage>
+        <RestaurantPageWrapper restaurantId={restaurantId}>{children}</RestaurantPageWrapper>
     );
-  };
-  
-  export default RestaurantLayout;
+};
+
+export default RestaurantLayout;
