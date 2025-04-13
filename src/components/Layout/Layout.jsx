@@ -1,5 +1,3 @@
-"use client"
-
 import { ProgressBar } from "../ProgressBar/ProgressBar";
 import styles from "./Layout.module.scss";
 import { ToggleTheme } from "../ThemeContext/ToggleTheme";

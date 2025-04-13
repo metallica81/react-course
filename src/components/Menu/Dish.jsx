@@ -14,7 +14,11 @@ export function Dish({ dishId }) {
         return "loading";
     }
 
-    if (dish?.name) {
+    if (!dish.name) {
+        return;
+    }
+
+    if (dish.name) {
         return (
             <div className={styles.dishCounterDiv}>
                 <p>{dish?.name}</p>

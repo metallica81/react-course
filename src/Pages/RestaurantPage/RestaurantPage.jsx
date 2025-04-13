@@ -1,5 +1,3 @@
-"use client"
-
 import { RestaurantContainer } from "../../components/Restaurant/RestaurantContainer";
 
 export function RestaurantPage({ children, restaurantId }) {

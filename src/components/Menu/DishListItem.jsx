@@ -1,5 +1,3 @@
-"use client"
-
 import styles from "./Menu.module.scss";
 import Link from "next/link";
 
