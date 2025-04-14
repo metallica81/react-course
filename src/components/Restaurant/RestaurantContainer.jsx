@@ -1,3 +1,5 @@
+"use client"
+
 import { Restaurant } from "./Restaurant";
 import {
     useAddReviewMutation,

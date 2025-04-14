@@ -2,10 +2,9 @@ import { ProgressBar } from "../ProgressBar/ProgressBar";
 import styles from "./Layout.module.scss";
 import { ToggleTheme } from "../ThemeContext/ToggleTheme";
 import { ToggleStatus } from "../UserContext/ToggleStatus";
-import { Outlet } from "react-router";
 import { CartContainer } from "../Cart/CartContainer";
 
-export function Layout() {
+export function Layout({children}) {
     return (
         <>
             <ProgressBar />
@@ -15,7 +14,7 @@ export function Layout() {
                     <ToggleStatus />
                 </header>
                 <section>
-                    <Outlet />
+                    {children}
                 </section>
                 <CartContainer />
                 <footer className={styles.footer}>footer</footer>

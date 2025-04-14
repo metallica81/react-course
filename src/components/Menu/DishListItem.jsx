@@ -1,5 +1,5 @@
 import styles from "./Menu.module.scss";
-import { Link } from "react-router";
+import Link from "next/link";
 
 export function DishListItem({ name, dishId }) {
 
@@ -9,7 +9,7 @@ export function DishListItem({ name, dishId }) {
 
     return (
         <li className={styles.root}>
-            <Link to={`/dish/${dishId}`}>{name}</Link>
+            <Link href={`/dish/${dishId}`}>{name}</Link>
         </li>
     );
 }
