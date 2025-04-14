@@ -6,8 +6,7 @@ import { Suspense } from "react";
 export const RestaurantsTabsPage = () => {
     const restaurantsPromise = getRestaurants();
     
-    const restaurants = use(restaurantsPromise).map(restaurant => restaurant.name);
-    console.log(restaurants)
+    const restaurants = use(restaurantsPromise);
 
     return (
         <Suspense fallback='loading...'>
