@@ -8,7 +8,7 @@ export function TabNavLink({ externalClassname, to, children, isActive, onClick 
             className={classNames(externalClassname, styles.tabLink, {
                 [styles.isActive]: !!isActive,
             })}
-            href={`restaurants/${to}`}
+            href={`/restaurants/${to}`}
             onClick={onClick}
         >
             {children}

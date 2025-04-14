@@ -1,5 +1,5 @@
-import { RestaurantsTabsPage } from "../../Pages/RestaurantsTabsPage/RestaurantsTabsPage";
+const RestaurantsPageWrapper = ({ children }) => {
+    return <>{children}</>;
+};
 
-export default RestaurantsTabsPage;
-
-
+export default RestaurantsPageWrapper;
