@@ -1,43 +1,17 @@
-"use client";
-
-import styles from "./Pages.module.scss";
-import { Outlet } from "react-router";
-import { useRestaurantPage } from "./useRestruantPage.js";
-import { useGetRestaurantsQuery } from "../../Redux/Services/api.js";
-import { TabNavLink } from "../../components/TabRestorauntContainer/TabNavLink.jsx";
+import { getRestaurants } from "../../Services/getRestaurants.js";
+import { use } from "react";
+import { TabsUi } from "./TabsUi.jsx";
+import { Suspense } from "react";
 
 export const RestaurantsTabsPage = () => {
-    const { status: requestStatus, data: restaurants = [] } = useGetRestaurantsQuery();
-    const restaurantIds = restaurants?.map(restaurant => restaurant.id);
-
-    const { activeRestaurantId, handleChooseRestaurant } =
-        useRestaurantPage(restaurantIds);
-
-    if (requestStatus === "idle" || requestStatus === "pending") {
-        return "loading...";
-    }
-
-    if (requestStatus === "rejected") {
-        return "error";
-    }
+    const restaurantsPromise = getRestaurants();
+    
+    const restaurants = use(restaurantsPromise).map(restaurant => restaurant.name);
+    console.log(restaurants)
 
     return (
-        <div className={styles.wrapper}>
-            <nav className={styles.nav}>
-                {restaurants.map((restaurant) => (
-                    <TabNavLink
-                        to={restaurant.id}
-                        key={restaurant.id}
-                        id={restaurant.id}
-                        externalClassname={styles.settingsForButton}
-                        onClick={() => handleChooseRestaurant(restaurant.id)}
-                        isActive={restaurant.id === activeRestaurantId}
-                    >
-                        {restaurant.name}
-                    </TabNavLink>
-                ))}
-            </nav>
-            <Outlet />
-        </div>
-    );
+        <Suspense fallback='loading...'>
+            <TabsUi restaurants={restaurants} />
+        </Suspense>
+    )
 };
