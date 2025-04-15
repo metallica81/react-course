@@ -3,6 +3,7 @@ import styles from "./Layout.module.scss";
 import { ToggleTheme } from "../ThemeContext/ToggleTheme";
 import { ToggleStatus } from "../UserContext/ToggleStatus";
 import { CartContainer } from "../Cart/CartContainer";
+import { CartWrapper } from "../Cart/CartWrapper";
 
 export function Layout({children}) {
     return (
@@ -16,7 +17,7 @@ export function Layout({children}) {
                 <section>
                     {children}
                 </section>
-                <CartContainer />
+                <CartWrapper />
                 <footer className={styles.footer}>footer</footer>
             </div>
         </>
