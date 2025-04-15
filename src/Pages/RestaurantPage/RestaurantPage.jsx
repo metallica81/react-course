@@ -1,11 +1,12 @@
 import { RestaurantContainer } from "../../components/Restaurant/RestaurantContainer";
+import { RestaurantData } from "../../components/Restaurant/RestaurantData";
 
 export function RestaurantPageWrapper({ children, restaurantId }) {
 
     if (restaurantId) {
         return (
             <>
-                <RestaurantContainer key={restaurantId} id={restaurantId} />
+                <RestaurantData key={restaurantId} id={restaurantId} />
                 { children }
             </>
         );
