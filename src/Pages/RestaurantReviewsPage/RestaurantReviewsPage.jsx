@@ -1,17 +1,4 @@
-"use client"
-
-import { useGetReviewsByIdQuery } from "../../Redux/Services/api";
-
-export function RestaurantReviewsPage({restaurantId}) {
-    const { isLoading, isError, data: reviews } = useGetReviewsByIdQuery(restaurantId);
-    if (isError) {
-        return "error";
-    }
-
-    if (isLoading) {
-        return "loading...";
-    } 
-
+export function RestaurantReviewsPage({ reviews }) {
     return (
         <>
             <h3>Отзывы</h3>

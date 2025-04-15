@@ -5,8 +5,7 @@ import { Suspense } from "react";
 const MenuPageWrapper = async ({ params }) => {
     const { restaurantId } = await params;
 
-    const dishMenuPromise = getMenuById(restaurantId);
-    const dishMenu = await dishMenuPromise;
+    const dishMenu = await getMenuById(restaurantId);
 
     return (
         <Suspense fallback='loading...'>
