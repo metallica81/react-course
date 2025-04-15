@@ -1,23 +1,8 @@
 "use client"
 
 import { DishListItem } from "../../components/Menu/DishListItem";
-import { useGetMenuQuery } from "../../Redux/Services/api";
 
-export function RestaurantMenuPage({restaurantId}) {
-    const {
-        isError,
-        isLoading,
-        data: restaurantDishList,
-    } = useGetMenuQuery(restaurantId);
-
-    if (isLoading) {
-        return "loading...";
-    }
-
-    if (isError) {
-        return "error";
-    }
-
+export function RestaurantMenuPage({ restaurantDishList }) {
     return (
         <>
             <h3>Меню</h3>
