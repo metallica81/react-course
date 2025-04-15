@@ -1,12 +1,17 @@
 import { use } from "react";
 import { UserContext } from "../UserContext";
 import { useGetReviewsByIdQuery } from "../../Redux/Services/api";
+import { getReviewById } from "../../Services/getReviewById";
 
-export const useReviewChanging = (changeReview, addReview, id) => {
+export const useReviewChanging = (changeReview, addReview, id, reviews) => {
     const { userId } = use(UserContext);
 
     // в этом месте я ищу отзыва текущего пользователя
-    const { data: reviews, isLoading, error } = useGetReviewsByIdQuery(id);
+    // const { data: reviews, isLoading, error } = useGetReviewsByIdQuery(id);
+
+    // const reviewPromise = getReviewById(id);
+    // const reviews = use(reviewPromise);
+    // console.log(reviews)
 
     const reviewByUserId = reviews?.find(review => review.userId === userId);
 
@@ -19,8 +24,8 @@ export const useReviewChanging = (changeReview, addReview, id) => {
             : addReview({ restaurantId: id, review });
     };
 
-    if (error) return "error"
-    if (isLoading) return "loading"
+    // if (error) return "error"
+    // if (isLoading) return "loading"
     
     const handleButtonText = reviewByUserId?.id ? "Change" : "Submit"; // надпись кнопки я отображаю условно
     return { handleButtonText, handleSubmit };

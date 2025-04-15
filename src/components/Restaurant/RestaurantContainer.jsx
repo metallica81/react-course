@@ -8,7 +8,7 @@ import {
 import styles from "./RestaurantContainer.module.scss";
 import { useReviewChanging } from "../Reviews/useReviewChanging";
 
-export const RestaurantContainer = ({ restaurant, id }) => {
+export const RestaurantContainer = ({ restaurant, id, reviews }) => {
 
     const [addReview, { isLoading: isAddLoadingReview }] =
         useAddReviewMutation();
@@ -17,7 +17,7 @@ export const RestaurantContainer = ({ restaurant, id }) => {
         useChangeReviewMutation();
 
     // вынес логику связанную с изменением отзыва в отельный компонент
-    const { handleButtonText, handleSubmit } = useReviewChanging(changeReview, addReview, id) 
+    const { handleButtonText, handleSubmit } = useReviewChanging(changeReview, addReview, id, reviews) 
     
     const isLoadingReview = () => isAddLoadingReview || isChangeReviewLoading;
 
