@@ -15,7 +15,7 @@ export const RestaurantData = ({ id }) => {
     
     return (
         <Suspense fallback='loading...'>
-            <RestaurantContainer restaurant={restaurantData} id={id} reviews={reviews} />
+            <RestaurantContainer restaurant={restaurantData} reviews={reviews} />
         </Suspense>
     );
 };

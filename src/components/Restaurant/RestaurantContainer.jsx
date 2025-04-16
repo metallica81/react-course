@@ -1,27 +1,48 @@
-"use client"
+"use client";
 
 import { Restaurant } from "./Restaurant";
-import {
-    useAddReviewMutation,
-    useChangeReviewMutation,
-} from "../../Redux/Services/api";
+import { useCallback, useOptimistic } from "react";
+import { addReviewAction } from "../../actions/addReviewAction";
 import styles from "./RestaurantContainer.module.scss";
-import { useReviewChanging } from "../Reviews/useReviewChanging";
 
-export const RestaurantContainer = ({ restaurant, id, reviews }) => {
+export const RestaurantContainer = ({ restaurant, reviews }) => {
+    const restaurantId = restaurant.id;
 
-    const [addReview, { isLoading: isAddLoadingReview }] =
-        useAddReviewMutation();
+    const [optimisticReview, addOptimisicReview] = useOptimistic(
+        reviews,
+        (currentState, opmisticValue) => [
+            ...currentState,
+            { ...opmisticValue, id: "creating" },
+        ]
+    );
 
-    const [changeReview, { isLoading: isChangeReviewLoading }] =
-        useChangeReviewMutation();
+    const handleAddReview = useCallback(
+        async (state, formData) => {
+            if (formData === null) {
+                return {
+                    text: "",
+                    rating: 5,
+                };
+            }
 
-    // вынес логику связанную с изменением отзыва в отельный компонент
-    const { handleButtonText, handleSubmit } = useReviewChanging(changeReview, addReview, id, reviews) 
-    
-    const isLoadingReview = () => isAddLoadingReview || isChangeReviewLoading;
+            const text = formData.get("text");
+            const rating = formData.get("rating");
 
-    if (!restaurant) {
+            const review = { text, rating, user: "asdasdoi29tu384f" };
+
+            addOptimisicReview(review);
+
+            await addReviewAction({ restaurantId, review });
+
+            return {
+                text: "default",
+                rating: 5,
+            };
+        },
+        [addOptimisicReview, restaurantId]
+    );
+
+    if (!optimisticReview.length) {
         return null;
     }
 
@@ -31,9 +52,8 @@ export const RestaurantContainer = ({ restaurant, id, reviews }) => {
         <Restaurant
             name={name}
             externalClassname={styles.externalClassname}
-            onSubmit={handleSubmit}
-            isSubmitButtonDisabled={isLoadingReview}
-            handleButtonText={handleButtonText}
+            reviews={optimisticReview}
+            submitFormAction={handleAddReview}
         />
     );
 };
