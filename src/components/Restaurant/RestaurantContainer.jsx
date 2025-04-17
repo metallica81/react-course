@@ -1,12 +1,16 @@
 "use client";
 
 import { Restaurant } from "./Restaurant";
-import { useCallback, useOptimistic } from "react";
+import { useCallback, useOptimistic, useContext, useMemo } from "react";
 import { addReviewAction } from "../../actions/addReviewAction";
+import { useChangeReviewMutation } from "../../Redux/Services/api";
+import { UserContext } from "../UserContext/index"
+
 import styles from "./RestaurantContainer.module.scss";
 
 export const RestaurantContainer = ({ restaurant, reviews }) => {
     const restaurantId = restaurant.id;
+    const { userId } = useContext(UserContext);
 
     const [optimisticReview, addOptimisicReview] = useOptimistic(
         reviews,
@@ -14,6 +18,11 @@ export const RestaurantContainer = ({ restaurant, reviews }) => {
             ...currentState,
             { ...opmisticValue, id: "creating" },
         ]
+    );
+
+    const userReview = useMemo(
+        () => reviews.find((r) => r.user === userId),
+        [reviews, userId]
     );
 
     const handleAddReview = useCallback(
@@ -28,7 +37,7 @@ export const RestaurantContainer = ({ restaurant, reviews }) => {
             const text = formData.get("text");
             const rating = formData.get("rating");
 
-            const review = { text, rating, user: "asdasdoi29tu384f" };
+            const review = { text, rating, user: userId };
 
             addOptimisicReview(review);
 
@@ -39,12 +48,30 @@ export const RestaurantContainer = ({ restaurant, reviews }) => {
                 rating: 5,
             };
         },
-        [addOptimisicReview, restaurantId]
+        [addOptimisicReview, restaurantId, userId]
     );
 
-    if (!optimisticReview.length) {
-        return null;
-    }
+    const [changeReview] = useChangeReviewMutation();
+
+    const handleUpdateReview = useCallback(
+        async (formData) => {
+            const text = formData.get("text");
+            const rating = formData.get("rating");
+
+            const updatedReview = {
+                ...userReview,
+                text,
+                rating,
+            };
+
+            try {
+                await changeReview({ review: updatedReview }).unwrap();
+            } catch (e) {
+                console.error("Update failed", e);
+            }
+        },
+        [changeReview, userReview]
+    );
 
     const { name } = restaurant;
 
@@ -52,8 +79,10 @@ export const RestaurantContainer = ({ restaurant, reviews }) => {
         <Restaurant
             name={name}
             externalClassname={styles.externalClassname}
-            reviews={optimisticReview}
             submitFormAction={handleAddReview}
+            onUpdateReview={handleUpdateReview}
+            userId={userId}
+            userReview={userReview}
         />
     );
 };

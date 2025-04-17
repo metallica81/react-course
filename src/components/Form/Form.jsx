@@ -4,21 +4,27 @@ import styles from "./Form.module.scss";
 import { useRef } from "react";
 import { useActionState } from "react";
 
-export function Form({ submitFormAction }) {
+export function Form({ submitFormAction, userReview, onUpdateReview }) {
     const ratingRef = useRef();
 
     const [formState, submitAction, isPending] = useActionState(
         submitFormAction,
         {
-            text: "default text",
-            rating: 5,
+            text: userReview?.text || "default text",
+            rating: userReview?.rating || 5,
         }
     );
+
+    const handlePatch = (e) => {
+        e.preventDefault();
+        const formData = new FormData(e.target.form);
+        onUpdateReview(formData);
+    };
 
     return (
         <form
             style={{ display: "flex", flexDirection: "column", gap: "15px" }}
-            action={submitAction}
+            action={userReview ? undefined : submitAction}
         >
             <div>
                 <label htmlFor="text">Text</label>
@@ -30,13 +36,10 @@ export function Form({ submitFormAction }) {
                 />
             </div>
 
-            {formState.errorMessage && <div>error</div>}
-
             <div>
                 <label htmlFor="rating">Rating</label>
                 <button
                     type="button"
-                    id="decrement-button"
                     onClick={() => ratingRef.current.stepDown()}
                 >
                     -
@@ -52,19 +55,20 @@ export function Form({ submitFormAction }) {
                 />
                 <button
                     type="button"
-                    id="increment-button"
                     onClick={() => ratingRef.current.stepUp()}
                 >
                     +
                 </button>
             </div>
 
-            <CommonButton
-                type="submit"
-                formAction={() => submitAction(null)}
-                title="clear"
-            />
-            <CommonButton type="submit">submit</CommonButton>
+            {userReview ? (
+                <CommonButton type="button" onClick={handlePatch}>
+                    update
+                </CommonButton>
+            ) : (
+                <CommonButton type="submit">submit</CommonButton>
+            )}
         </form>
     );
 }
+

@@ -7,8 +7,10 @@ import { use } from "react";
 export const Restaurant = ({
     name,
     externalClassname,
-    reviews,
-    submitFormAction
+    onUpdateReview,
+    submitFormAction,
+    userId,
+    userReview
 }) => {
     const { isAuth } = use(UserContext);
     
@@ -21,6 +23,9 @@ export const Restaurant = ({
             </div>
             {isAuth && <Form
                 submitFormAction={submitFormAction}
+                onUpdateReview={onUpdateReview}
+                userId={userId}
+                userReview={userReview}
             />}
         </section>
     );
