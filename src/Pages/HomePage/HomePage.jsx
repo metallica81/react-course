@@ -1,7 +1,7 @@
 import styles from "./HomePage.module.scss";
 import { TabLink } from "../../components/TabRestorauntContainer/TabLink";
 
-export const HomePage = () => {
+const HomePage = () => {
     return (
         <div className={styles.outerContainer}>
             <div className={styles.innerContainer}>
@@ -13,3 +13,5 @@ export const HomePage = () => {
         </div>
     );
 };
+
+export default HomePage;

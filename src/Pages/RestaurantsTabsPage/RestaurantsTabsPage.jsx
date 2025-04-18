@@ -1,16 +1,8 @@
 import { getRestaurants } from "../../Services/getRestaurants.js";
-import { use } from "react";
-import { TabsUi } from "./TabsUi.jsx";
-import { Suspense } from "react";
+import TabsUi from "./TabsUi.jsx";
 
-export const RestaurantsTabsPage = () => {
-    const restaurantsPromise = getRestaurants();
-    
-    const restaurants = use(restaurantsPromise);
+export default async function RestaurantsTabsPage() {
+    const restaurants = await getRestaurants();
 
-    return (
-        <Suspense fallback='loading...'>
-            <TabsUi restaurants={restaurants} />
-        </Suspense>
-    )
-};
+    return <TabsUi restaurants={restaurants} />;
+}

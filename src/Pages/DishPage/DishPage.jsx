@@ -1,14 +1,8 @@
 import { Dish } from "../../components/Menu/Dish";
 import { getDishById } from "../../Services/getDishById";
-import { use } from "react";
-import { Suspense } from "react";
 
-export function DishPage({dishId}) {
-    const dish = use(getDishById(dishId))
+export default async function DishPage({ dishId }) {
+    const dish = await getDishById(dishId);
 
-    return (
-        <Suspense fallback="loading...">
-            <Dish dishId={dishId} dish={dish} />
-        </Suspense>
-    )
+    return <Dish dishId={dishId} dish={dish} />;
 }

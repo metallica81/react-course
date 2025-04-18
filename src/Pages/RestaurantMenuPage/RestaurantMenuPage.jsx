@@ -2,12 +2,12 @@
 
 import { DishListItem } from "../../components/Menu/DishListItem";
 
-export function RestaurantMenuPage({ restaurantDishList }) {
+function RestaurantMenuPage({ restaurantDishList }) {
     return (
         <>
             <h3>Меню</h3>
             <ul>
-                {restaurantDishList.map((dish) => (
+                {restaurantDishList?.map((dish) => (
                     <DishListItem
                         key={dish.id}
                         dishId={dish.id}
@@ -18,3 +18,5 @@ export function RestaurantMenuPage({ restaurantDishList }) {
         </>
     );
 }
+
+export default RestaurantMenuPage;

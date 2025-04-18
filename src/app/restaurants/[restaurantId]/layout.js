@@ -1,4 +1,4 @@
-import { RestaurantPageWrapper } from "../../../Pages/RestaurantPage/RestaurantPage";
+import RestaurantPageWrapper from "../../../Pages/RestaurantPage/RestaurantPage";
 import { getRestaurants } from "../../../Services/getRestaurants";
 
 export const generateMetadata = async ({ params }) => {

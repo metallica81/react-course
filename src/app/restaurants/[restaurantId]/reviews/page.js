@@ -1,4 +1,4 @@
-import { RestaurantReviewsPage } from "../../../../Pages/RestaurantReviewsPage/RestaurantReviewsPage";
+import RestaurantReviewsPage from "../../../../Pages/RestaurantReviewsPage/RestaurantReviewsPage";
 import { getReviewById } from "../../../../Services/getReviewById";
 import { Suspense } from "react";
 

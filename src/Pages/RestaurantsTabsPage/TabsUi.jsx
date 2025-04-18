@@ -1,10 +1,10 @@
 "use client";
 
 import styles from "./Pages.module.scss";
-import { useRestaurantPage } from "./useRestruantPage.js";
+import useRestaurantPage from "../../hooks/useRestruantPage.js";
 import { TabNavLink } from "../../components/TabRestorauntContainer/TabNavLink.jsx";
 
-export const TabsUi = ({ restaurants }) => {
+const TabsUi = ({ restaurants }) => {
     const restaurantIds = restaurants?.map((restaurant) => restaurant.id);
 
     const { activeRestaurantId, handleChooseRestaurant } =
@@ -13,7 +13,7 @@ export const TabsUi = ({ restaurants }) => {
     return (
         <div className={styles.wrapper}>
             <nav className={styles.nav}>
-                {restaurants.map((restaurant) => (
+                {restaurants?.map((restaurant) => (
                     <TabNavLink
                         to={restaurant.id}
                         key={restaurant.id}
@@ -29,3 +29,5 @@ export const TabsUi = ({ restaurants }) => {
         </div>
     );
 };
+
+export default TabsUi;
