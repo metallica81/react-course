@@ -12,7 +12,7 @@ export const RestaurantContainer = ({ restaurant, reviews }) => {
     const restaurantId = restaurant.id;
     const { userId } = useContext(UserContext);
 
-    const [optimisticReview, addOptimisicReview] = useOptimistic(
+    const [addOptimisicReview] = useOptimistic(
         reviews,
         (currentState, opmisticValue) => [
             ...currentState,

@@ -1,13 +1,11 @@
 import { CommonButton } from "../CommonButton/CommonButton";
-import { Counter } from "../Counter/Counter";
-import styles from "./Form.module.scss";
 import { useRef } from "react";
 import { useActionState } from "react";
 
 export function Form({ submitFormAction, userReview, onUpdateReview }) {
     const ratingRef = useRef();
 
-    const [formState, submitAction, isPending] = useActionState(
+    const [formState, submitAction] = useActionState(
         submitFormAction,
         {
             text: userReview?.text || "default text",
