@@ -1,4 +1,4 @@
-import { getRestaurants } from "../../Services/getRestaurants.js";
+import { getRestaurants } from "../../../Services/getRestaurants.js";
 import TabsUi from "./TabsUi.jsx";
 
 export default async function RestaurantsTabsPage() {

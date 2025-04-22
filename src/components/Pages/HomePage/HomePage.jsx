@@ -1,5 +1,5 @@
 import styles from "./HomePage.module.scss";
-import { TabLink } from "../../components/TabRestorauntContainer/TabLink";
+import { TabLink } from "../../TabRestorauntContainer/TabLink";
 
 const HomePage = () => {
     return (

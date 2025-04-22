@@ -1,4 +1,4 @@
-import RestaurantMenuPage from "../../../../Pages/RestaurantMenuPage/RestaurantMenuPage";
+import RestaurantMenuPage from "../../../../components/Pages/RestaurantMenuPage/RestaurantMenuPage";
 import { getMenuById } from "../../../../Services/getMenuById";
 import { Suspense } from "react";
 

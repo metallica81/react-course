@@ -1,8 +1,8 @@
 "use client";
 
 import styles from "./Pages.module.scss";
-import useRestaurantPage from "../../hooks/useRestruantPage.js";
-import { TabNavLink } from "../../components/TabRestorauntContainer/TabNavLink.jsx";
+import useRestaurantPage from "../../../hooks/useRestruantPage.js";
+import { TabNavLink } from "../../TabRestorauntContainer/TabNavLink.jsx";
 
 const TabsUi = ({ restaurants }) => {
     const restaurantIds = restaurants?.map((restaurant) => restaurant.id);

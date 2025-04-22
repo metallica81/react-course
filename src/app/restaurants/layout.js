@@ -1,4 +1,4 @@
-import RestaurantsTabsPage from "../../Pages/RestaurantsTabsPage/RestaurantsTabsPage";
+import RestaurantsTabsPage from "../../components/Pages/RestaurantsTabsPage/RestaurantsTabsPage";
 const RestaurantsPageWrapper = ({ children }) => {
     return (
         <>

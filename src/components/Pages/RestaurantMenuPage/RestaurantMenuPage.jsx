@@ -1,6 +1,6 @@
 "use client"
 
-import { DishListItem } from "../../components/Menu/DishListItem";
+import { DishListItem } from "../../../components/Menu/DishListItem";
 
 function RestaurantMenuPage({ restaurantDishList }) {
     return (
