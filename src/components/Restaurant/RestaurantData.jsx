@@ -1,21 +1,13 @@
 import { getRestaurantById } from "../../Services/getRestaurantById";
 import { getReviewById } from "../../Services/getReviewById";
-import { Suspense } from "react";
 import { RestaurantContainer } from "./RestaurantContainer";
-import { use } from "react";
 
-export const RestaurantData = ({ id }) => {
-    const restaurantPromise = getRestaurantById(id);
+export const RestaurantData = async ({ id }) => {
+    const restaurantData = await getRestaurantById(id);
 
-    const restaurantData = use(restaurantPromise);
+    const reviews = await getReviewById(id);
 
-    const reviewPromise = getReviewById(id);
-    const reviews = use(reviewPromise);
-
-    
     return (
-        <Suspense fallback='loading...'>
-            <RestaurantContainer restaurant={restaurantData} reviews={reviews} />
-        </Suspense>
+        <RestaurantContainer restaurant={restaurantData} reviews={reviews} />
     );
 };
