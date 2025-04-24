@@ -9,8 +9,8 @@ export const Restaurant = ({
     externalClassname,
     onUpdateReview,
     submitFormAction,
-    userId,
-    userReview
+    isUserPostReview,
+    userId
 }) => {
     const { isAuth } = use(UserContext);
     
@@ -24,8 +24,8 @@ export const Restaurant = ({
             {isAuth && <Form
                 submitFormAction={submitFormAction}
                 onUpdateReview={onUpdateReview}
+                isUserPostReview={isUserPostReview}
                 userId={userId}
-                userReview={userReview}
             />}
         </section>
     );

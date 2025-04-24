@@ -77,7 +77,6 @@ router.post("/review/:restaurantId", (req, res, next) => {
 
   reply(res, newReview);
 });
-
 router.patch("/review/:reviewId", (req, res, next) => {
   const body = req.body;
   const reviewId = req.params?.reviewId;
@@ -87,8 +86,10 @@ router.patch("/review/:reviewId", (req, res, next) => {
     updatedReview = updateById(reviews)(reviewId, body);
   }
 
-  reply(res, updatedReview);
+  reply(res, updatedReview);  // Отправляем обновлённый объект обратно
 });
+
+
 
 router.get("/users", (req, res, next) => {
   reply(res, users);

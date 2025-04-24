@@ -2,16 +2,13 @@ import { CommonButton } from "../CommonButton/CommonButton";
 import { useRef } from "react";
 import { useActionState } from "react";
 
-export function Form({ submitFormAction, userReview, onUpdateReview }) {
+export function Form({ submitFormAction, onUpdateReview, isUserPostReview }) {
     const ratingRef = useRef();
 
-    const [formState, submitAction] = useActionState(
-        submitFormAction,
-        {
-            text: userReview?.text || "default text",
-            rating: userReview?.rating || 5,
-        }
-    );
+    const [formState, submitAction] = useActionState(submitFormAction, {
+        text: "default text",
+        rating: 5,
+    });
 
     const handlePatch = (e) => {
         e.preventDefault();
@@ -22,7 +19,7 @@ export function Form({ submitFormAction, userReview, onUpdateReview }) {
     return (
         <form
             style={{ display: "flex", flexDirection: "column", gap: "15px" }}
-            action={userReview ? undefined : submitAction}
+            action={submitAction}
         >
             <div>
                 <label htmlFor="text">Text</label>
@@ -59,8 +56,11 @@ export function Form({ submitFormAction, userReview, onUpdateReview }) {
                 </button>
             </div>
 
-            {userReview ? (
-                <CommonButton type="button" onClick={handlePatch}>
+            {isUserPostReview ? (
+                <CommonButton
+                    type="button"
+                    onClick={handlePatch}
+                >
                     update
                 </CommonButton>
             ) : (
@@ -69,4 +69,3 @@ export function Form({ submitFormAction, userReview, onUpdateReview }) {
         </form>
     );
 }
-

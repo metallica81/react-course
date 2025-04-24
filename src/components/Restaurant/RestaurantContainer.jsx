@@ -1,15 +1,16 @@
 "use client";
 
 import { Restaurant } from "./Restaurant";
-import { useCallback, useOptimistic, useContext, useMemo } from "react";
+import { useCallback, useOptimistic, useContext } from "react";
 import { addReviewAction } from "../../actions/addReviewAction";
-import { useChangeReviewMutation } from "../../Redux/Services/api";
-import { UserContext } from "../UserContext/index"
+import { UserContext } from "../UserContext/index";
+import { changeReviewAction } from "../../actions/changeReviewAction";
 
 import styles from "./RestaurantContainer.module.scss";
 
 export const RestaurantContainer = ({ restaurant, reviews }) => {
     const restaurantId = restaurant.id;
+
     const { userId } = useContext(UserContext);
 
     const [_, addOptimisicReview] = useOptimistic(
@@ -20,10 +21,9 @@ export const RestaurantContainer = ({ restaurant, reviews }) => {
         ]
     );
 
-    const userReview = useMemo(
-        () => reviews.find((r) => r.user === userId),
-        [reviews, userId]
-    );
+    const reviewId = reviews.find((review) => {
+        return review.user === userId;
+    }).id;
 
     const handleAddReview = useCallback(
         async (state, formData) => {
@@ -51,29 +51,31 @@ export const RestaurantContainer = ({ restaurant, reviews }) => {
         [addOptimisicReview, restaurantId, userId]
     );
 
-    const [changeReview] = useChangeReviewMutation();
-
     const handleUpdateReview = useCallback(
         async (formData) => {
             const text = formData.get("text");
             const rating = formData.get("rating");
 
             const updatedReview = {
-                ...userReview,
                 text,
                 rating,
+                user: userId
             };
 
             try {
-                await changeReview({ review: updatedReview }).unwrap();
+                await changeReviewAction({ reviewId, review: updatedReview });
             } catch (e) {
                 console.error("Update failed", e);
             }
         },
-        [changeReview, userReview]
+        [reviewId, userId]
     );
 
     const { name } = restaurant;
+
+    const isUserPostReview = !!reviews.find((review) => {
+        return review.user === userId;
+    });
 
     return (
         <Restaurant
@@ -81,8 +83,8 @@ export const RestaurantContainer = ({ restaurant, reviews }) => {
             externalClassname={styles.externalClassname}
             submitFormAction={handleAddReview}
             onUpdateReview={handleUpdateReview}
+            isUserPostReview={isUserPostReview}
             userId={userId}
-            userReview={userReview}
         />
     );
 };

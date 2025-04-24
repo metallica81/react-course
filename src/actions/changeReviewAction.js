@@ -2,9 +2,10 @@
 
 import { revalidateTag } from 'next/cache';
 
-export async function changeReviewAction({ restaurantId, review }) {
+export async function changeReviewAction({ reviewId, review }) {
+
   const result = await fetch(
-    `http://localhost:3001/api/review/${restaurantId}`,
+    `http://localhost:3001/api/review/${reviewId}`,
     {
       method: 'PATCH',
       body: JSON.stringify(review),
@@ -12,7 +13,10 @@ export async function changeReviewAction({ restaurantId, review }) {
     }
   );
 
-  revalidateTag('getReviews');
+  const response = await result.json();
 
-  return result.json();
+  revalidateTag('getReviews');
+  
+  return response;
 }
+
