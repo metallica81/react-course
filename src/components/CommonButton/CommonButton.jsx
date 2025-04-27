@@ -10,11 +10,13 @@ export function CommonButton({
     children,
     onClick,
     externalClassname,
+    formAction,
+    type
 }) {
     const { theme } = use(ThemeContext);
     return (
         <button
-            type="button"
+            type={type}
             onClick={onClick}
             className={classNames(externalClassname, {
                 [styles.default]: theme === "default",
@@ -25,6 +27,7 @@ export function CommonButton({
                 [styles.navSelectorColor]: colorVariant === "navSelectorColor",
                 [styles.isActive]: !!isActive,
             })}
+            formAction={formAction}
         >
             {children}
         </button>

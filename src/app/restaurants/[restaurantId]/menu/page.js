@@ -1,8 +1,12 @@
-import { RestaurantMenuPage } from "../../../../Pages/RestaurantMenuPage/RestaurantMenuPage";
+import RestaurantMenuPage from "../../../../components/Pages/RestaurantMenuPage/RestaurantMenuPage";
+import { getMenuById } from "../../../../Services/getMenuById";
 
 const MenuPageWrapper = async ({ params }) => {
     const { restaurantId } = await params;
-    return <RestaurantMenuPage restaurantId={restaurantId} />
-}
+
+    const dishMenu = await getMenuById(restaurantId);
+
+    return <RestaurantMenuPage restaurantDishList={dishMenu} />;
+};
 
 export default MenuPageWrapper;

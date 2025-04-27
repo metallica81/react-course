@@ -1,53 +1,90 @@
-"use client"
+"use client";
 
 import { Restaurant } from "./Restaurant";
-import {
-    useAddReviewMutation,
-    useGetRestaurantByIdQuery,
-    useChangeReviewMutation,
-} from "../../Redux/Services/api";
+import { useCallback, useOptimistic, useContext } from "react";
+import { addReviewAction } from "../../actions/addReviewAction";
+import { UserContext } from "../UserContext/index";
+import { changeReviewAction } from "../../actions/changeReviewAction";
+
 import styles from "./RestaurantContainer.module.scss";
-import { useReviewChanging } from "../Reviews/useReviewChanging";
 
-export const RestaurantContainer = ({ id }) => {
-    const {
-        isError,
-        isLoading,
-        data: restaurant,
-    } = useGetRestaurantByIdQuery(id);
+export const RestaurantContainer = ({ restaurant, reviews }) => {
+    const restaurantId = restaurant.id;
 
-    const [addReview, { isLoading: isAddLoadingReview }] =
-        useAddReviewMutation();
+    const { userId } = useContext(UserContext);
 
-    const [changeReview, { isLoading: isChangeReviewLoading }] =
-        useChangeReviewMutation();
+    const [_, addOptimisicReview] = useOptimistic(
+        reviews,
+        (currentState, opmisticValue) => [
+            ...currentState,
+            { ...opmisticValue, id: "creating" },
+        ]
+    );
 
-    // вынес логику связанную с изменением отзыва в отельный компонент
-    const { handleButtonText, handleSubmit } = useReviewChanging(changeReview, addReview, id) 
-    
-    const isLoadingReview = () => isAddLoadingReview || isChangeReviewLoading;
+    const reviewId = reviews.find((review) => {
+        return review.user === userId;
+    }).id;
 
-    if (isError) {
-        return "error";
-    }
+    const handleAddReview = useCallback(
+        async (state, formData) => {
+            if (formData === null) {
+                return {
+                    text: "",
+                    rating: 5,
+                };
+            }
 
-    if (isLoading) {
-        return "loading...";
-    }
+            const text = formData.get("text");
+            const rating = formData.get("rating");
 
-    if (!restaurant) {
-        return null;
-    }
+            const review = { text, rating, user: userId };
+
+            addOptimisicReview(review);
+
+            await addReviewAction({ restaurantId, review });
+
+            return {
+                text: "default",
+                rating: 5,
+            };
+        },
+        [addOptimisicReview, restaurantId, userId]
+    );
+
+    const handleUpdateReview = useCallback(
+        async (formData) => {
+            const text = formData.get("text");
+            const rating = formData.get("rating");
+
+            const updatedReview = {
+                text,
+                rating,
+                user: userId
+            };
+
+            try {
+                await changeReviewAction({ reviewId, review: updatedReview });
+            } catch (e) {
+                console.error("Update failed", e);
+            }
+        },
+        [reviewId, userId]
+    );
 
     const { name } = restaurant;
+
+    const isUserPostReview = !!reviews.find((review) => {
+        return review.user === userId;
+    });
 
     return (
         <Restaurant
             name={name}
             externalClassname={styles.externalClassname}
-            onSubmit={handleSubmit}
-            isSubmitButtonDisabled={isLoadingReview}
-            handleButtonText={handleButtonText}
+            submitFormAction={handleAddReview}
+            onUpdateReview={handleUpdateReview}
+            isUserPostReview={isUserPostReview}
+            userId={userId}
         />
     );
 };

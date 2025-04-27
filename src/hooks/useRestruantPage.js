@@ -1,8 +1,10 @@
 import { useState, useEffect } from "react";
 
-export const useRestaurantPage = (restaurantIds) => {
+const useRestaurantPage = (restaurantIds) => {
     const [activeRestaurantId, setActiveRestaurantId] = useState(
-        restaurantIds[0]
+        Array.isArray(restaurantIds) && restaurantIds.length > 0
+            ? restaurantIds[0]
+            : null
     );
 
     useEffect(() => {
@@ -23,3 +25,5 @@ export const useRestaurantPage = (restaurantIds) => {
         handleChooseRestaurant,
     };
 };
+
+export default useRestaurantPage;

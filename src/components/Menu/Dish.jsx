@@ -1,19 +1,7 @@
-"use client"
-
 import { DishCounter } from "./DishCounter/DishCounter";
 import styles from "./Menu.module.scss";
-import { useGetDishByIdQuery } from "../../Redux/Services/api";
 
-export function Dish({ dishId }) {
-    const { isError, isLoading, data: dish } = useGetDishByIdQuery(dishId);
-    if (isError) {
-        return "error";
-    }
-    
-    if (isLoading) {
-        return "loading";
-    }
-
+export function Dish({ dishId, dish }) {
     if (!dish.name) {
         return;
     }
